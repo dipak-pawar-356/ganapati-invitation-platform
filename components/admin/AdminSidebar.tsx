@@ -51,7 +51,7 @@ export default function AdminSidebar({
     { id: "committee", label: "Committee & Members", icon: Users, role: "MANDAL_ADMIN" },
     { id: "music", label: "Music & Audio", icon: Music, role: "MANDAL_ADMIN" },
     { id: "map", label: "Map & Contact", icon: MapPin, role: "MANDAL_ADMIN" },
-    { id: "theme", label: "Theme Selector", icon: Palette, role: "MANDAL_ADMIN" },
+    { id: "theme", label: "Website Theme (थीम)", icon: Palette, role: "MANDAL_ADMIN" },
     { id: "analytics", label: "Analytics", icon: BarChart3, role: "ALL" },
     { id: "profile", label: "Profile", icon: UserCheck, role: "ALL" },
     { id: "settings", label: "Settings", icon: Settings, role: "ALL" },

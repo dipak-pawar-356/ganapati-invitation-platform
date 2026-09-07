@@ -138,15 +138,77 @@ export async function updateMandalAction(
   data: Partial<Omit<Mandal, "id" | "slug" | "createdAt">>
 ) {
   try {
-    await db.update(mandals).set(data).where(eq(mandals.id, mandalId));
+    const session = await requireMandalAdmin(mandalId);
+
+    // Strict Authorization: After initial submission, only Super Admin (PLATFORM_ADMIN) can change themeId
+    if (data.themeId !== undefined) {
+      if (session.role !== "PLATFORM_ADMIN") {
+        const [currentMandal] = await db
+          .select({ themeId: mandals.themeId })
+          .from(mandals)
+          .where(eq(mandals.id, mandalId))
+          .limit(1);
+
+        if (currentMandal && data.themeId !== currentMandal.themeId) {
+          throw new Error(
+            "अनधिकृत: थीम बदलण्याची परवानगी फक्त सुपर ॲडमिनला (Super Admin) आहे. मंडळाच्या ॲडमिनला थीम बदलता येत नाही. (Unauthorized: Theme can only be changed by Super Admin)"
+          );
+        }
+        // Remove themeId so non-super-admin update never overwrites it
+        delete data.themeId;
+      }
+    }
+
+    if (Object.keys(data).length > 0) {
+      await db.update(mandals).set(data).where(eq(mandals.id, mandalId));
+    }
+
+    await saveVersionHistory(
+      mandalId,
+      session.role === "PLATFORM_ADMIN"
+        ? `Updated details by Super Admin (${session.email})`
+        : `Updated details by Mandal Admin (${session.email})`,
+      session.email
+    );
 
     const [updated] = await db.select().from(mandals).where(eq(mandals.id, mandalId));
     if (updated) {
       revalidatePath(`/${updated.slug}`);
     }
     revalidatePath("/admin");
+    return { success: true };
   } catch (error) {
     handleActionError(error, "Update Mandal");
+  }
+}
+
+/**
+ * Update Mandal Theme (Super Admin Only)
+ */
+export async function updateMandalThemeAction(mandalId: string, themeId: string) {
+  const session = await requirePlatformAdmin();
+  try {
+    const validThemes = ["royal_gold", "peshwai", "divine_saffron", "night_darshan"];
+    if (!validThemes.includes(themeId)) {
+      throw new Error(`अवैध थीम आयडी (Invalid Theme ID): ${themeId}`);
+    }
+
+    await db.update(mandals).set({ themeId }).where(eq(mandals.id, mandalId));
+
+    await saveVersionHistory(
+      mandalId,
+      `Theme changed to '${themeId}' by Super Admin (${session.email})`,
+      session.email
+    );
+
+    const [updated] = await db.select().from(mandals).where(eq(mandals.id, mandalId));
+    if (updated) {
+      revalidatePath(`/${updated.slug}`);
+    }
+    revalidatePath("/admin");
+    return { success: true };
+  } catch (error) {
+    handleActionError(error, "Update Mandal Theme");
   }
 }
 

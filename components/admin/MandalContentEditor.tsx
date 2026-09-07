@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import {
   FullMandalData,
   updateMandalAction,
+  updateMandalThemeAction,
   addTimelineEventAction,
   deleteTimelineEventAction,
   addGalleryItemAction,
@@ -36,6 +37,7 @@ import {
   Upload,
   Lock,
   Printer,
+  Check,
 } from "lucide-react";
 import PdfInvitationCard from "@/components/PdfInvitationCard";
 
@@ -142,7 +144,7 @@ export default function MandalContentEditor({ mandal, activeTab, isSuperAdmin = 
         subtitle,
         establishedYear,
         inviteMessage,
-        themeId,
+        ...(isSuperAdmin ? { themeId } : {}),
         contactPersonName,
         contact: mobileNumber || contact,
         mobileNumber,
@@ -261,7 +263,7 @@ export default function MandalContentEditor({ mandal, activeTab, isSuperAdmin = 
           { id: "timeline", label: "📅 वेळापत्रक" },
           { id: "music", label: "🎵 भक्ती संगीत" },
           { id: "map", label: "📍 पत्ता व मॅप" },
-          { id: "theme", label: "🎨 थीम" },
+          { id: "theme", label: isSuperAdmin ? "🎨 थीम (Theme)" : "🔒 थीम (Locked)" },
           { id: "profile", label: "👤 संपर्क" },
         ].map((t) => (
           <button
@@ -1155,10 +1157,37 @@ export default function MandalContentEditor({ mandal, activeTab, isSuperAdmin = 
       {/* 8. THEME SELECTOR TAB */}
       {(currentTab === "all" || currentTab === "theme" || currentTab === "dashboard") && (
         <div className="rounded-3xl border border-[var(--admin-border)] bg-black/40 p-6 backdrop-blur-md space-y-4 text-xs">
-          <h3 className="font-display font-bold text-base text-[var(--admin-gold-light)] flex items-center gap-2 pb-3 border-b border-[var(--admin-border)]">
-            <Palette className="w-4 h-4 text-amber-400" />
-            <span>Website Theme Selector (4 Premium Themes)</span>
-          </h3>
+          <div className="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-[var(--admin-border)]">
+            <h3 className="font-display font-bold text-base text-[var(--admin-gold-light)] flex items-center gap-2">
+              <Palette className="w-4 h-4 text-amber-400" />
+              <span>वेबसाईट थीम (Website Theme)</span>
+            </h3>
+            {isSuperAdmin ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 px-3 py-1 text-[11px] font-bold text-emerald-400">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>सुपर ॲडमिन अधिकार (Super Admin Access) — थीम बदलू शकता</span>
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-950/80 border border-amber-500/40 px-3 py-1 text-[11px] font-bold text-amber-400">
+                <Lock className="w-3.5 h-3.5" />
+                <span>थीम निवड लॉक आहे (Locked for Mandal Admin)</span>
+              </span>
+            )}
+          </div>
+
+          {!isSuperAdmin && (
+            <div className="rounded-2xl border border-amber-500/30 bg-amber-950/30 p-4 text-xs text-amber-200/90 flex items-start gap-3">
+              <Lock className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <p className="font-bold text-amber-300">
+                  थीम बदल फक्त सुपर ॲडमिनद्वारेच शक्य (Theme can only be changed by Super Admin)
+                </p>
+                <p className="text-[11px] text-amber-200/70 leading-relaxed">
+                  नोंदणीच्या वेळी तुम्ही निवडलेली थीम निश्चित करण्यात आली आहे. सुरक्षेसाठी व डिझाईन स्थिरतेसाठी, फॉर्म सबमिट झाल्यानंतर थीम बदलण्याचा अधिकार फक्त <strong>सुपर ॲडमिनला (Super Admin)</strong> आहे. मंडळाच्या ॲडमिनला थीम बदलता येत नाही. तुम्हाला थीम बदलायची असल्यास कृपया सुपर ॲडमिनशी संपर्क साधा.
+                </p>
+              </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
@@ -1166,32 +1195,55 @@ export default function MandalContentEditor({ mandal, activeTab, isSuperAdmin = 
               { id: "peshwai", title: "Theme 2: Peshwai Heritage", desc: "Deep Maroon, Kesari, Wada Wooden Texture", bg: "from-red-950 to-orange-900" },
               { id: "divine_saffron", title: "Theme 3: Modern Premium", desc: "White, Saffron Gold, Glassmorphism", bg: "from-orange-900 to-amber-600" },
               { id: "night_darshan", title: "Theme 4: Night Darshan", desc: "Dark Blue, Floating Diyas, Golden Glow", bg: "from-slate-950 to-blue-900" },
-            ].map((th) => (
-              <button
-                key={th.id}
-                type="button"
-                onClick={async () => {
-                  setThemeId(th.id);
-                  await updateMandalAction(mandal.id, { themeId: th.id });
-                  setMsg(`Theme changed to ${th.title}!`);
-                  setTimeout(() => setMsg(null), 3000);
-                }}
-                className={`rounded-2xl border p-4 text-left transition-all cursor-pointer ${
-                  themeId === th.id
-                    ? "border-[var(--admin-gold)] bg-[var(--admin-border-gold)] ring-2 ring-[#e8a93b]"
-                    : "border-white/10 bg-black/40 hover:border-[var(--admin-border)]"
-                }`}
-              >
-                <div className={`h-12 w-full rounded-xl bg-gradient-to-r ${th.bg} mb-3`} />
-                <h4 className="font-bold text-[var(--admin-text)]">{th.title}</h4>
-                <p className="text-[11px] text-[var(--admin-text-soft)] mt-1">{th.desc}</p>
-                {themeId === th.id && (
-                  <span className="mt-2 inline-block rounded-full bg-[var(--admin-gold)] px-2 py-0.5 text-[10px] font-bold text-[var(--admin-bg)]">
-                    Active Theme
-                  </span>
-                )}
-              </button>
-            ))}
+            ].map((th) => {
+              const isActive = themeId === th.id;
+              return (
+                <button
+                  key={th.id}
+                  type="button"
+                  disabled={!isSuperAdmin}
+                  onClick={async () => {
+                    if (!isSuperAdmin) return;
+                    setThemeId(th.id);
+                    try {
+                      await updateMandalThemeAction(mandal.id, th.id);
+                      setMsg(`Theme changed to ${th.title}!`);
+                      setTimeout(() => setMsg(null), 3000);
+                    } catch (err: any) {
+                      setMsg("Error changing theme: " + err?.message);
+                    }
+                  }}
+                  className={`rounded-2xl border p-4 text-left transition-all ${
+                    isActive
+                      ? "border-[var(--admin-gold)] bg-[var(--admin-border-gold)] ring-2 ring-[#e8a93b] shadow-lg"
+                      : isSuperAdmin
+                      ? "border-white/10 bg-black/40 hover:border-[var(--admin-border)] cursor-pointer"
+                      : "border-white/5 bg-black/30 opacity-50 cursor-not-allowed"
+                  }`}
+                  title={!isSuperAdmin && !isActive ? "थीम बदल फक्त सुपर ॲडमिन करू शकतात" : undefined}
+                >
+                  <div className={`h-12 w-full rounded-xl bg-gradient-to-r ${th.bg} mb-3`} />
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-bold text-[var(--admin-text)]">{th.title}</h4>
+                    {!isSuperAdmin && !isActive && (
+                      <Lock className="w-3.5 h-3.5 text-amber-400/60" />
+                    )}
+                  </div>
+                  <p className="text-[11px] text-[var(--admin-text-soft)] mt-1">{th.desc}</p>
+                  {isActive && (
+                    <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-[var(--admin-gold)] px-2 py-0.5 text-[10px] font-bold text-[var(--admin-bg)]">
+                      <Check className="w-3 h-3" />
+                      <span>Active Theme</span>
+                    </span>
+                  )}
+                  {!isSuperAdmin && !isActive && (
+                    <span className="mt-2 inline-block rounded-full bg-white/10 px-2 py-0.5 text-[10px] text-white/50">
+                      Super Admin Only
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
       )}
