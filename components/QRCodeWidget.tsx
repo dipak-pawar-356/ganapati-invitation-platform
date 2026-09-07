@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { QrCode, Download, Share2, Check } from "lucide-react";
@@ -8,7 +8,7 @@ interface QRCodeWidgetProps {
   slug: string;
 }
 
-const DEFAULT_SITE_URL = "https://ganapati-invitation-platform.vercel.app";
+const DEFAULT_SITE_URL = "https://ganapati-invitation-platform-phi.vercel.app";
 
 export default function QRCodeWidget({ mandalName, slug }: QRCodeWidgetProps) {
   const [copied, setCopied] = useState(false);

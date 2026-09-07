@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { Share2, Send, Check } from "lucide-react";
@@ -10,7 +10,7 @@ interface WhatsAppInviteWidgetProps {
   contact?: string;
 }
 
-const DEFAULT_SITE_URL = "https://ganapati-invitation-platform.vercel.app";
+const DEFAULT_SITE_URL = "https://ganapati-invitation-platform-phi.vercel.app";
 
 export default function WhatsAppInviteWidget({
   mandalName,

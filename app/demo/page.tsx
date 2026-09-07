@@ -6,7 +6,7 @@ import { Eye, ArrowRight, Sparkles, Check, BookmarkCheck, PhoneCall, KeyRound } 
 import { FestiveAudioAndBlessing } from "@/components/FestiveAudioAndBlessing";
 
 const contactPhone = "8669233747";
-const platformUrl = "https://ganapati-invitation-platform.vercel.app";
+const platformUrl = "https://ganapati-invitation-platform-phi.vercel.app";
 
 const demos = [
   {

@@ -9,7 +9,7 @@
 [![Drizzle ORM](https://img.shields.io/badge/Drizzle_ORM-v0.45-C5F74F?style=for-the-badge&logo=drizzle)](https://orm.drizzle.team/)
 [![Neon Database](https://img.shields.io/badge/Neon-Serverless_PostgreSQL-00E599?style=for-the-badge&logo=postgresql)](https://neon.tech/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Production Status](https://img.shields.io/badge/Status-Production_Ready-brightgreen?style=for-the-badge)](https://ganapati-invitation-platform.vercel.app)
+[![Production Status](https://img.shields.io/badge/Status-Production_Ready-brightgreen?style=for-the-badge)](https://ganapati-invitation-platform-phi.vercel.app)
 
 <br/>
 
@@ -97,10 +97,10 @@ The platform includes **4 distinct, interchangeable spiritual themes**, rendered
 
 | Theme | Live Demo URL | Visual Inspiration | Palette |
 | :--- | :--- | :--- | :--- |
-| **Theme 1: Royal Gold** | [`/shri-jay-malhar-ganesh-mandal`](https://ganapati-invitation-platform.vercel.app/shri-jay-malhar-ganesh-mandal) | Suvarna Mandir, brass columns & royal palace gates | Gold (`#e8a93b`) & Deep Maroon (`#1c0609`) |
-| **Theme 2: Peshwai** | [`/shri-swami-samarth-mitra-mandal`](https://ganapati-invitation-platform.vercel.app/shri-swami-samarth-mitra-mandal) | 18th-century Maratha Peshwa Wada & tutari motifs | Crimson (`#d96a2b`) & Burgundy (`#2c0507`) |
-| **Theme 3: Divine Saffron** | [`/shri-shivneri-ganesh-mandal`](https://ganapati-invitation-platform.vercel.app/shri-shivneri-ganesh-mandal) | Modern glassmorphism & glowing Bhagwa aura | Saffron (`#ea580c`) & Dark Terracotta (`#180a03`) |
-| **Theme 4: Night Darshan** | [`/shri-sant-dnyaneshwar-ganesh-mandal`](https://ganapati-invitation-platform.vercel.app/shri-sant-dnyaneshwar-ganesh-mandal) | Midnight illumination, glowing diyas & night sky | Neon Gold (`#38bdf8`) & Midnight Slate (`#050b14`) |
+| **Theme 1: Royal Gold** | [`/shri-jay-malhar-ganesh-mandal`](https://ganapati-invitation-platform-phi.vercel.app/shri-jay-malhar-ganesh-mandal) | Suvarna Mandir, brass columns & royal palace gates | Gold (`#e8a93b`) & Deep Maroon (`#1c0609`) |
+| **Theme 2: Peshwai** | [`/shri-swami-samarth-mitra-mandal`](https://ganapati-invitation-platform-phi.vercel.app/shri-swami-samarth-mitra-mandal) | 18th-century Maratha Peshwa Wada & tutari motifs | Crimson (`#d96a2b`) & Burgundy (`#2c0507`) |
+| **Theme 3: Divine Saffron** | [`/shri-shivneri-ganesh-mandal`](https://ganapati-invitation-platform-phi.vercel.app/shri-shivneri-ganesh-mandal) | Modern glassmorphism & glowing Bhagwa aura | Saffron (`#ea580c`) & Dark Terracotta (`#180a03`) |
+| **Theme 4: Night Darshan** | [`/shri-sant-dnyaneshwar-ganesh-mandal`](https://ganapati-invitation-platform-phi.vercel.app/shri-sant-dnyaneshwar-ganesh-mandal) | Midnight illumination, glowing diyas & night sky | Neon Gold (`#38bdf8`) & Midnight Slate (`#050b14`) |
 
 For design tokens, CSS variables, and adding a 5th theme, see [docs/THEMES.md](docs/THEMES.md).
 

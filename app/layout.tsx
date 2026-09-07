@@ -20,7 +20,7 @@ const mukta = Mukta({
 export const metadata: Metadata = {
   title: "डिजिटल गणपती निमंत्रण प्लॅटफॉर्म | Adviks SoftTech",
   description: "आपल्या गणेश मंडळाचे सुंदर animated निमंत्रण मोफत तयार करा — WhatsApp वर सहज शेअर करा.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://ganapati-invitation-platform.vercel.app"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://ganapati-invitation-platform-phi.vercel.app"),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

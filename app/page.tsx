@@ -29,7 +29,7 @@ import {
   UserCheck,
 } from "lucide-react";
 
-const platformUrl = "https://ganapati-invitation-platform.vercel.app";
+const platformUrl = "https://ganapati-invitation-platform-phi.vercel.app";
 const contactPhone = "8669233747";
 
 const defaultWhatsappMessage = `🚩 यंदाच्या गणेशोत्सवासाठी आपल्या मंडळाची Premium Digital Invitation Website तयार करा!

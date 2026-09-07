@@ -11,7 +11,7 @@ export default function PersonalizedInviteWidget({ mandalName, slug }: Personali
   const [guestName, setGuestName] = useState("");
 
   const handleSend = () => {
-    const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://ganapati-invitation-platform.vercel.app";
+    const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://ganapati-invitation-platform-phi.vercel.app";
     const inviteUrl = `${siteUrl}/${slug}`;
     const greeting = guestName.trim() ? `${guestName.trim()} जी,` : "नमस्कार,";
 
