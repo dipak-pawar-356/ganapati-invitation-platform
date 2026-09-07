@@ -104,15 +104,15 @@ export async function seedDemoData() {
 
       await db.insert(galleryItems).values([
         { mandalId: mandal1.id, url: "/images/gallery/gallery-1.webp", caption: "श्रींची सुवर्ण अलंकारयुक्त प्रतिष्ठापना मूर्ती", displayOrder: 1 },
-        { mandalId: mandal1.id, url: "/images/gallery/gallery-2.webp", caption: "सायंकाळची महाआरती व भाविकांची गर्दी", displayOrder: 2 },
+        { mandalId: mandal1.id, url: "/images/gallery/gallery-2.png", caption: "सायंकाळची महाआरती व भाविकांची गर्दी", displayOrder: 2 },
         { mandalId: mandal1.id, url: "/images/gallery/gallery-3.webp", caption: "भव्य पुष्पवृष्टी आणि मंदिराची आकर्षक सजावट", displayOrder: 3 },
       ]);
 
       await db.insert(committeeMembers).values([
-        { mandalId: mandal1.id, name: "श्री. अमोल पाटील", position: "अध्यक्ष", photoUrl: "/images/family/person-1.webp", phone: "+91 98231 23456", displayOrder: 1 },
-        { mandalId: mandal1.id, name: "श्री. नितीन देशपांडे", position: "उपाध्यक्ष", photoUrl: "/images/family/person-2.webp", phone: "+91 98231 23457", displayOrder: 2 },
-        { mandalId: mandal1.id, name: "श्री. सचिन मोरे", position: "सचिव", photoUrl: "/images/family/person-3.webp", phone: "+91 98231 23458", displayOrder: 3 },
-        { mandalId: mandal1.id, name: "श्री. राहुल शिंदे", position: "खजिनदार", photoUrl: "/images/family/person-1.webp", phone: "+91 98231 23459", displayOrder: 4 },
+        { mandalId: mandal1.id, name: "श्री. अमोल पाटील", position: "अध्यक्ष", photoUrl: "/images/family/person-1.png", phone: "+91 98231 23456", displayOrder: 1 },
+        { mandalId: mandal1.id, name: "श्री. नितीन देशपांडे", position: "उपाध्यक्ष", photoUrl: "/images/family/person-2.png", phone: "+91 98231 23457", displayOrder: 2 },
+        { mandalId: mandal1.id, name: "श्री. सचिन मोरे", position: "सचिव", photoUrl: "/images/family/person-3.png", phone: "+91 98231 23458", displayOrder: 3 },
+        { mandalId: mandal1.id, name: "श्री. राहुल शिंदे", position: "खजिनदार", photoUrl: "/images/family/person-1.png", phone: "+91 98231 23459", displayOrder: 4 },
       ]);
     }
 
@@ -180,14 +180,14 @@ export async function seedDemoData() {
       ]);
 
       await db.insert(galleryItems).values([
-        { mandalId: mandal2.id, url: "/images/gallery/gallery-2.webp", caption: "ऐतिहासिक वाडा देखावा व राजेशाही सिंहासन", displayOrder: 1 },
-        { mandalId: mandal2.id, url: "/images/gallery/gallery-4.webp", caption: "तुतारी वादनाने बाप्पांचे स्वागत", displayOrder: 2 },
+        { mandalId: mandal2.id, url: "/images/gallery/gallery-2.png", caption: "ऐतिहासिक वाडा देखावा व राजेशाही सिंहासन", displayOrder: 1 },
+        { mandalId: mandal2.id, url: "/images/gallery/gallery-4.png", caption: "तुतारी वादनाने बाप्पांचे स्वागत", displayOrder: 2 },
       ]);
 
       await db.insert(committeeMembers).values([
-        { mandalId: mandal2.id, name: "श्री. संभाजीराव कदम", position: "अध्यक्ष", photoUrl: "/images/family/person-2.webp", phone: "+91 98502 34567", displayOrder: 1 },
-        { mandalId: mandal2.id, name: "श्री. विक्रमसिंह जगताप", position: "उपाध्यक्ष", photoUrl: "/images/family/person-3.webp", phone: "+91 98502 34568", displayOrder: 2 },
-        { mandalId: mandal2.id, name: "श्री. गणेश चव्हाण", position: "सचिव", photoUrl: "/images/family/person-1.webp", phone: "+91 98502 34569", displayOrder: 3 },
+        { mandalId: mandal2.id, name: "श्री. संभाजीराव कदम", position: "अध्यक्ष", photoUrl: "/images/family/person-2.png", phone: "+91 98502 34567", displayOrder: 1 },
+        { mandalId: mandal2.id, name: "श्री. विक्रमसिंह जगताप", position: "उपाध्यक्ष", photoUrl: "/images/family/person-3.png", phone: "+91 98502 34568", displayOrder: 2 },
+        { mandalId: mandal2.id, name: "श्री. गणेश चव्हाण", position: "सचिव", photoUrl: "/images/family/person-1.png", phone: "+91 98502 34569", displayOrder: 3 },
       ]);
     }
 
@@ -253,13 +253,13 @@ export async function seedDemoData() {
       ]);
 
       await db.insert(galleryItems).values([
-        { mandalId: mandal3.id, url: "/images/gallery/gallery-4.webp", caption: "श्री शिवनेरी गणेश दर्शन २०२५", displayOrder: 1 },
+        { mandalId: mandal3.id, url: "/images/gallery/gallery-4.png", caption: "श्री शिवनेरी गणेश दर्शन २०२५", displayOrder: 1 },
         { mandalId: mandal3.id, url: "/images/gallery/gallery-1.webp", caption: "दिव्य रोषणाई व मंडप सजावट", displayOrder: 2 },
       ]);
 
       await db.insert(committeeMembers).values([
-        { mandalId: mandal3.id, name: "श्री. महेश भोसले", position: "अध्यक्ष", photoUrl: "/images/family/person-3.webp", phone: "+91 99703 45678", displayOrder: 1 },
-        { mandalId: mandal3.id, name: "श्री. रोहन सुतार", position: "सचिव", photoUrl: "/images/family/person-1.webp", phone: "+91 99703 45679", displayOrder: 2 },
+        { mandalId: mandal3.id, name: "श्री. महेश भोसले", position: "अध्यक्ष", photoUrl: "/images/family/person-3.png", phone: "+91 99703 45678", displayOrder: 1 },
+        { mandalId: mandal3.id, name: "श्री. रोहन सुतार", position: "सचिव", photoUrl: "/images/family/person-1.png", phone: "+91 99703 45679", displayOrder: 2 },
       ]);
     }
 
@@ -330,8 +330,8 @@ export async function seedDemoData() {
       ]);
 
       await db.insert(committeeMembers).values([
-        { mandalId: mandal4.id, name: "श्री. दत्तात्रय कुलकर्णी", position: "अध्यक्ष", photoUrl: "/images/family/person-1.webp", phone: "+91 94224 56789", displayOrder: 1 },
-        { mandalId: mandal4.id, name: "श्री. वैभव इंगळे", position: "उपाध्यक्ष", photoUrl: "/images/family/person-2.webp", phone: "+91 94224 56790", displayOrder: 2 },
+        { mandalId: mandal4.id, name: "श्री. दत्तात्रय कुलकर्णी", position: "अध्यक्ष", photoUrl: "/images/family/person-1.png", phone: "+91 94224 56789", displayOrder: 1 },
+        { mandalId: mandal4.id, name: "श्री. वैभव इंगळे", position: "उपाध्यक्ष", photoUrl: "/images/family/person-2.png", phone: "+91 94224 56790", displayOrder: 2 },
       ]);
     }
 

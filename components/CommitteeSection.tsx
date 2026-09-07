@@ -56,7 +56,7 @@ export default function CommitteeSection({
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-500 blur-md opacity-40 group-hover:opacity-80 transition-opacity duration-500 animate-pulse" />
                 <div className="relative h-32 w-32 overflow-hidden rounded-full border-3 border-[var(--t-primary)] shadow-2xl group-hover:border-[#f3d089] transition-colors">
                   <Image
-                    src={member.photoUrl || "/images/family/person-1.webp"}
+                    src={member.photoUrl || "/images/family/person-1.png"}
                     alt={member.name}
                     fill
                     unoptimized

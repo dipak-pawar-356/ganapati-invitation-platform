@@ -342,7 +342,7 @@ export default function SubmitForm() {
     if (gallery.length === 0) {
       setGallery([
         { id: makeId(), preview: "/images/gallery/gallery-1.webp", caption: "श्रींची सुवर्ण अलंकारयुक्त प्रतिष्ठापना मूर्ती" },
-        { id: makeId(), preview: "/images/gallery/gallery-2.webp", caption: "सायंकाळची महाआरती व भाविकांची गर्दी" },
+        { id: makeId(), preview: "/images/gallery/gallery-2.png", caption: "सायंकाळची महाआरती व भाविकांची गर्दी" },
       ]);
     }
 

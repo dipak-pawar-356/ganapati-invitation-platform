@@ -245,7 +245,7 @@ export function CommitteeCard({
       {/* Photo */}
       <div className="relative mx-auto mb-4 h-28 w-28 overflow-hidden rounded-full border-3 border-[var(--t-primary)] shadow-lg group-hover:border-[var(--t-primary-light)]">
         <Image
-          src={photoUrl || "/images/family/person-1.webp"}
+          src={photoUrl || "/images/family/person-1.png"}
           alt={name}
           fill
           unoptimized

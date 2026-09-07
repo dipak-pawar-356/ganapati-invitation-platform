@@ -964,7 +964,7 @@ export default function MandalContentEditor({ mandal, activeTab, isSuperAdmin = 
               <div key={c.id} className="flex items-center justify-between bg-black/40 p-3 rounded-2xl border border-white/10 gap-3">
                 <div className="flex items-center gap-3 overflow-hidden">
                   <img
-                    src={c.photoUrl || "/images/family/person-1.webp"}
+                    src={c.photoUrl || "/images/family/person-1.png"}
                     alt={c.name}
                     className="w-12 h-12 rounded-full object-cover border border-amber-400/50 flex-shrink-0"
                   />

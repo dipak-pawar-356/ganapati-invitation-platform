@@ -43,11 +43,11 @@ const DEMO_MANDALS: Record<string, any> = {
     ],
     gallery: [
       { id: "g1", mandalId: "demo-1", mediaType: "image", url: "/images/gallery/gallery-1.webp", caption: "श्रींची सुवर्ण अलंकारयुक्त प्रतिष्ठापना मूर्ती", displayOrder: 1, createdAt: new Date() },
-      { id: "g2", mandalId: "demo-1", mediaType: "image", url: "/images/gallery/gallery-2.webp", caption: "आरती सोहळा व भाविकांची गर्दी", displayOrder: 2, createdAt: new Date() },
+      { id: "g2", mandalId: "demo-1", mediaType: "image", url: "/images/gallery/gallery-2.png", caption: "आरती सोहळा व भाविकांची गर्दी", displayOrder: 2, createdAt: new Date() },
     ],
     committee: [
-      { id: "c1", mandalId: "demo-1", name: "श्री. अमोल पाटील", position: "अध्यक्ष", photoUrl: "/images/family/person-1.webp", phone: "+91 98231 23456", instagramUrl: null, facebookUrl: null, isDisplayed: 1, displayOrder: 1, createdAt: new Date() },
-      { id: "c2", mandalId: "demo-1", name: "श्री. नितीन देशपांडे", position: "सचिव", photoUrl: "/images/family/person-2.webp", phone: "+91 98231 23457", instagramUrl: null, facebookUrl: null, isDisplayed: 1, displayOrder: 2, createdAt: new Date() },
+      { id: "c1", mandalId: "demo-1", name: "श्री. अमोल पाटील", position: "अध्यक्ष", photoUrl: "/images/family/person-1.png", phone: "+91 98231 23456", instagramUrl: null, facebookUrl: null, isDisplayed: 1, displayOrder: 1, createdAt: new Date() },
+      { id: "c2", mandalId: "demo-1", name: "श्री. नितीन देशपांडे", position: "सचिव", photoUrl: "/images/family/person-2.png", phone: "+91 98231 23457", instagramUrl: null, facebookUrl: null, isDisplayed: 1, displayOrder: 2, createdAt: new Date() },
     ],
   },
   "shri-swami-samarth-mitra-mandal": {
@@ -83,10 +83,10 @@ const DEMO_MANDALS: Record<string, any> = {
       { id: "t10", mandalId: "demo-2", day: "दिवस १", title: "पारंपारिक पालखी सोहळा", subtitle: "पुणेरी पगडी व तुतारी गजरात", eventDate: "दिवस १", eventTime: "सकाळी १०:०० वा.", description: "शाही मिरवणूक आणि वैदिक सुक्तांचे पठन.", imageUrl: null, bgColor: null, displayOrder: 1, createdAt: new Date() },
     ],
     gallery: [
-      { id: "g10", mandalId: "demo-2", mediaType: "image", url: "/images/gallery/gallery-2.webp", caption: "ऐतिहासिक वाडा देखावा व सिंहासन", displayOrder: 1, createdAt: new Date() },
+      { id: "g10", mandalId: "demo-2", mediaType: "image", url: "/images/gallery/gallery-2.png", caption: "ऐतिहासिक वाडा देखावा व सिंहासन", displayOrder: 1, createdAt: new Date() },
     ],
     committee: [
-      { id: "c10", mandalId: "demo-2", name: "श्री. संभाजीराव कदम", position: "अध्यक्ष", photoUrl: "/images/family/person-2.webp", phone: "+91 98502 34567", instagramUrl: null, facebookUrl: null, isDisplayed: 1, displayOrder: 1, createdAt: new Date() },
+      { id: "c10", mandalId: "demo-2", name: "श्री. संभाजीराव कदम", position: "अध्यक्ष", photoUrl: "/images/family/person-2.png", phone: "+91 98502 34567", instagramUrl: null, facebookUrl: null, isDisplayed: 1, displayOrder: 1, createdAt: new Date() },
     ],
   },
   "shri-shivneri-ganesh-mandal": {
@@ -122,10 +122,10 @@ const DEMO_MANDALS: Record<string, any> = {
       { id: "t20", mandalId: "demo-3", day: "दिवस १", title: "गणेश आगमन सोहळा", subtitle: "भगवी आरास", eventDate: "दिवस १", eventTime: "सकाळी ९:३० वा.", description: "धार्मिक वातावरणात आगमन सोहळा.", imageUrl: null, bgColor: null, displayOrder: 1, createdAt: new Date() },
     ],
     gallery: [
-      { id: "g20", mandalId: "demo-3", mediaType: "image", url: "/images/gallery/gallery-4.webp", caption: "श्री शिवनेरी गणेश दर्शन", displayOrder: 1, createdAt: new Date() },
+      { id: "g20", mandalId: "demo-3", mediaType: "image", url: "/images/gallery/gallery-4.png", caption: "श्री शिवनेरी गणेश दर्शन", displayOrder: 1, createdAt: new Date() },
     ],
     committee: [
-      { id: "c20", mandalId: "demo-3", name: "श्री. महेश भोसले", position: "अध्यक्ष", photoUrl: "/images/family/person-3.webp", phone: "+91 99703 45678", instagramUrl: null, facebookUrl: null, isDisplayed: 1, displayOrder: 1, createdAt: new Date() },
+      { id: "c20", mandalId: "demo-3", name: "श्री. महेश भोसले", position: "अध्यक्ष", photoUrl: "/images/family/person-3.png", phone: "+91 99703 45678", instagramUrl: null, facebookUrl: null, isDisplayed: 1, displayOrder: 1, createdAt: new Date() },
     ],
   },
   "shri-sant-dnyaneshwar-ganesh-mandal": {
@@ -164,7 +164,7 @@ const DEMO_MANDALS: Record<string, any> = {
       { id: "g30", mandalId: "demo-4", mediaType: "image", url: "/images/gallery/gallery-6.webp", caption: "रात्र दर्शनाची विलोभनीय रोषणाई", displayOrder: 1, createdAt: new Date() },
     ],
     committee: [
-      { id: "c30", mandalId: "demo-4", name: "श्री. दत्तात्रय कुलकर्णी", position: "अध्यक्ष", photoUrl: "/images/family/person-1.webp", phone: "+91 94224 56789", instagramUrl: null, facebookUrl: null, isDisplayed: 1, displayOrder: 1, createdAt: new Date() },
+      { id: "c30", mandalId: "demo-4", name: "श्री. दत्तात्रय कुलकर्णी", position: "अध्यक्ष", photoUrl: "/images/family/person-1.png", phone: "+91 94224 56789", instagramUrl: null, facebookUrl: null, isDisplayed: 1, displayOrder: 1, createdAt: new Date() },
     ],
   },
 };
