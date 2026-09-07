@@ -60,12 +60,12 @@ export default function MurtiCarousel({ mandalName, establishedYear, photos }: M
       {/* SWINGING GARLANDS */}
       <div className="pointer-events-none absolute left-0 top-[110px] z-20 w-[115px] sm:w-[165px] md:w-[210px] lg:top-[125px] lg:w-[250px] xl:w-[290px]">
         <div className="garland-swing-left">
-          <Image src="/images/decorations/flower-garland-left.webp" alt="" width={600} height={900} className="h-auto w-full object-contain" />
+          <Image src="/images/decorations/flower-garland-left.webp" alt="" width={600} height={900} style={{ height: "auto" }} className="h-auto w-full object-contain" />
         </div>
       </div>
       <div className="pointer-events-none absolute right-0 top-[110px] z-20 w-[115px] sm:w-[165px] md:w-[210px] lg:top-[125px] lg:w-[250px] xl:w-[290px]">
         <div className="garland-swing-right">
-          <Image src="/images/decorations/flower-garland-right.webp" alt="" width={600} height={900} className="h-auto w-full object-contain" />
+          <Image src="/images/decorations/flower-garland-right.webp" alt="" width={600} height={900} style={{ height: "auto" }} className="h-auto w-full object-contain" />
         </div>
       </div>
 

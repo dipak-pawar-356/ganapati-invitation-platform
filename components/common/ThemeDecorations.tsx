@@ -18,10 +18,10 @@ export function PeshwaiDecorations() {
     <div className="pointer-events-none absolute inset-0 z-10 overflow-hidden select-none">
       {/* Traditional Ornate Corner Motifs */}
       <div className="absolute top-4 left-4 w-7 sm:w-10 h-7 sm:h-10 opacity-60">
-        <Image src="/images/decorations/corner.png" alt="" width={40} height={40} unoptimized className="w-full h-auto" />
+        <Image src="/images/decorations/corner.png" alt="" width={40} height={40} unoptimized style={{ height: "auto" }} className="w-full h-auto" />
       </div>
       <div className="absolute top-4 right-4 w-7 sm:w-10 h-7 sm:h-10 opacity-60">
-        <Image src="/images/decorations/corner.png" alt="" width={40} height={40} unoptimized className="w-full h-auto -scale-x-100" />
+        <Image src="/images/decorations/corner.png" alt="" width={40} height={40} unoptimized style={{ height: "auto" }} className="w-full h-auto -scale-x-100" />
       </div>
     </div>
   );
@@ -56,6 +56,7 @@ export function NightDarshanDecorations() {
           width={1400}
           height={300}
           unoptimized
+          style={{ height: "auto" }}
           className="w-full h-auto object-cover object-bottom"
         />
       </div>
@@ -66,7 +67,7 @@ export function NightDarshanDecorations() {
         animate={{ y: [0, 400], x: [-10, 20], rotate: [0, 180] }}
         transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
       >
-        <Image src="/images/petals/petals.png" alt="" width={32} height={32} unoptimized className="w-full h-auto" />
+        <Image src="/images/petals/petals.png" alt="" width={32} height={32} unoptimized style={{ height: "auto" }} className="w-full h-auto" />
       </motion.div>
 
       <motion.div
@@ -74,7 +75,7 @@ export function NightDarshanDecorations() {
         animate={{ y: [0, 450], x: [10, -20], rotate: [0, -180] }}
         transition={{ duration: 14, repeat: Infinity, ease: "linear", delay: 3 }}
       >
-        <Image src="/images/petals/petals.png" alt="" width={32} height={32} unoptimized className="w-full h-auto" />
+        <Image src="/images/petals/petals.png" alt="" width={32} height={32} unoptimized style={{ height: "auto" }} className="w-full h-auto" />
       </motion.div>
     </div>
   );

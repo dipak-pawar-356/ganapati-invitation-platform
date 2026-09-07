@@ -45,6 +45,7 @@ export default function Footer({
           width={1400}
           height={300}
           unoptimized
+          style={{ height: "auto" }}
           className="w-full h-auto object-cover object-bottom"
         />
       </div>
@@ -62,6 +63,7 @@ export default function Footer({
             width={80}
             height={80}
             unoptimized
+            style={{ height: "auto" }}
             className="w-full h-auto object-contain filter drop-shadow-[0_8px_20px_rgba(232,169,59,0.5)]"
           />
         </div>
@@ -145,6 +147,7 @@ export default function Footer({
               width={36}
               height={36}
               unoptimized
+              style={{ width: "100%", height: "100%" }}
               className="w-full h-full object-contain"
             />
           </div>

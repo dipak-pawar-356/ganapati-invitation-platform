@@ -466,6 +466,7 @@ export default function Timeline({ events }: TimelineProps) {
                           alt="बाल गणपती"
                           width={100}
                           height={100}
+                          style={{ height: "auto" }}
                           sizes="(max-width: 639px) 60px, (max-width: 1023px) 80px, 100px"
                           className="h-auto w-full object-contain filter drop-shadow-[0_8px_16px_rgba(234,88,12,0.35)] transition-transform duration-300 group-hover:scale-110"
                         />
@@ -481,6 +482,7 @@ export default function Timeline({ events }: TimelineProps) {
                           alt="बाल गणपती"
                           width={100}
                           height={100}
+                          style={{ height: "auto" }}
                           sizes="(max-width: 639px) 60px, (max-width: 1023px) 80px, 100px"
                           className="h-auto w-full object-contain filter drop-shadow-[0_8px_16px_rgba(234,88,12,0.35)] transition-transform duration-300 group-hover:scale-110"
                         />

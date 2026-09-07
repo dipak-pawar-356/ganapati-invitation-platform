@@ -231,6 +231,7 @@ export default function PlatformLandingPage() {
               height={280}
               priority
               unoptimized
+              style={{ height: "auto" }}
               className="w-full h-auto object-contain drop-shadow-[0_12px_18px_rgba(0,0,0,0.5)]"
             />
           </motion.div>
@@ -250,6 +251,7 @@ export default function PlatformLandingPage() {
               height={280}
               priority
               unoptimized
+              style={{ height: "auto" }}
               className="w-full h-auto object-contain drop-shadow-[0_12px_18px_rgba(0,0,0,0.5)]"
             />
           </motion.div>
@@ -269,6 +271,7 @@ export default function PlatformLandingPage() {
             width={84}
             height={160}
             unoptimized
+            style={{ height: "auto" }}
             className="w-full h-auto object-contain filter drop-shadow-[0_14px_22px_rgba(232,169,59,0.65)]"
           />
         </div>
@@ -287,6 +290,7 @@ export default function PlatformLandingPage() {
             width={84}
             height={160}
             unoptimized
+            style={{ height: "auto" }}
             className="w-full h-auto object-contain filter drop-shadow-[0_14px_22px_rgba(232,169,59,0.65)]"
           />
         </div>
@@ -299,6 +303,7 @@ export default function PlatformLandingPage() {
             width={450}
             height={450}
             unoptimized
+            style={{ height: "auto" }}
             className="w-full h-auto object-contain filter blur-[0.5px] drop-shadow-[0_0_30px_rgba(232,169,59,0.4)]"
           />
         </div>
@@ -310,6 +315,7 @@ export default function PlatformLandingPage() {
             width={450}
             height={450}
             unoptimized
+            style={{ height: "auto" }}
             className="w-full h-auto object-contain filter blur-[0.5px] drop-shadow-[0_0_30px_rgba(232,169,59,0.4)]"
           />
         </div>
@@ -325,6 +331,7 @@ export default function PlatformLandingPage() {
               width={210}
               height={210}
               unoptimized
+              style={{ height: "auto" }}
               className="w-full h-auto object-contain filter drop-shadow-[0_0_25px_rgba(232,169,59,0.85)]"
             />
           </div>
@@ -346,15 +353,16 @@ export default function PlatformLandingPage() {
               height={300}
               priority
               unoptimized
+              style={{ height: "auto" }}
               className="w-full h-auto object-contain filter drop-shadow-[0_20px_40px_rgba(232,169,59,0.5)] select-none"
             />
           </motion.div>
 
           <div className="pointer-events-none absolute left-1 sm:left-4 bottom-0 z-20 w-9 sm:w-12 animate-diya-flame">
-            <Image src="/images/diyas/diya.png" alt="" width={48} height={48} unoptimized className="w-full h-auto object-contain" />
+            <Image src="/images/diyas/diya.png" alt="" width={48} height={48} unoptimized style={{ height: "auto" }} className="w-full h-auto object-contain" />
           </div>
           <div className="pointer-events-none absolute right-1 sm:right-4 bottom-0 z-20 w-9 sm:w-12 animate-diya-flame">
-            <Image src="/images/diyas/diya.png" alt="" width={48} height={48} unoptimized className="w-full h-auto object-contain" />
+            <Image src="/images/diyas/diya.png" alt="" width={48} height={48} unoptimized style={{ height: "auto" }} className="w-full h-auto object-contain" />
           </div>
         </div>
 

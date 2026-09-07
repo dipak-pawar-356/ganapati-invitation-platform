@@ -28,7 +28,7 @@ export default function BackgroundVideo({
             alt=""
             fill
             priority
-            sizes="100vw"
+            sizes="(min-width: 768px) 100vw, 1px"
             className="object-cover object-center"
           />
         </div>
@@ -40,7 +40,7 @@ export default function BackgroundVideo({
             alt=""
             fill
             priority
-            sizes="100vw"
+            sizes="(max-width: 767px) 100vw, 1px"
             className="object-cover object-center"
           />
         </div>

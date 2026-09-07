@@ -148,6 +148,7 @@ export default function InvitationCard({
             alt=""
             width={40}
             height={40}
+            style={{ width: 40, height: 40 }}
             className="
               absolute
               left-3
@@ -166,6 +167,7 @@ export default function InvitationCard({
             alt=""
             width={40}
             height={40}
+            style={{ width: 40, height: 40 }}
             className="
               absolute
               right-3
@@ -313,12 +315,13 @@ export default function InvitationCard({
               fill
               priority
               sizes="125px"
+              style={{
+                filter:
+                  "drop-shadow(0 8px 7px rgba(65,35,5,0.32)) drop-shadow(0 18px 18px rgba(0,0,0,0.18))",
+              }}
               className="
                 select-none
                 object-contain
-
-                drop-shadow-[0_8px_7px_rgba(65,35,5,0.32)]
-                drop-shadow-[0_18px_18px_rgba(0,0,0,0.18)]
               "
             />
           </motion.div>
@@ -489,12 +492,13 @@ export default function InvitationCard({
               alt=""
               fill
               sizes="125px"
+              style={{
+                filter:
+                  "drop-shadow(0 8px 7px rgba(65,35,5,0.32)) drop-shadow(0 18px 18px rgba(0,0,0,0.18))",
+              }}
               className="
                 select-none
                 object-contain
-
-                drop-shadow-[0_8px_7px_rgba(65,35,5,0.32)]
-                drop-shadow-[0_18px_18px_rgba(0,0,0,0.18)]
               "
             />
           </motion.div>
@@ -629,6 +633,7 @@ export default function InvitationCard({
             alt=""
             width={40}
             height={40}
+            style={{ width: 40, height: 40 }}
             className="
               absolute
               bottom-3
@@ -648,6 +653,7 @@ export default function InvitationCard({
             alt=""
             width={40}
             height={40}
+            style={{ width: 40, height: 40 }}
             className="
               absolute
               bottom-3

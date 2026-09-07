@@ -116,28 +116,12 @@ export default function Blessings() {
       ====================================================== */}
 
       <Image
-        src="/images/backgrounds/invitation-desktop-bg.png"
-        alt=""
-        fill
-        priority
-        className="
-          pointer-events-none
-          hidden
-          object-cover
-          md:block
-        "
-      />
-
-      <Image
         src="/images/backgrounds/blessing-bg.png"
         alt=""
         fill
         priority
-        className="
-          pointer-events-none
-          object-cover
-          md:hidden
-        "
+        sizes="100vw"
+        className="pointer-events-none object-cover"
       />
 
       <div
@@ -146,7 +130,7 @@ export default function Blessings() {
           absolute
           inset-0
           -z-10
-          bg-gradient-to-b
+          bg-linear-to-b
           from-amber-950/70
           to-amber-900/70
         "
@@ -161,26 +145,26 @@ export default function Blessings() {
   className="
     pointer-events-none
     absolute
-    left-[-40px]
-    top-[-10px]
+    -left-10
+    -top-2.5
     z-20
-     h-[350px]
-    w-[230px]
+    h-87.5
+    w-57.5
 
-    sm:left-[-65px]
-    sm:top-[-12px]
-    sm:h-[470px]
-    sm:w-[315px]
+    sm:-left-16.25
+    sm:-top-3
+    sm:h-117.5
+    sm:w-78.75
 
-    md:left-[-80px]
-    md:top-[-15px]
-    md:h-[550px]
-    md:w-[370px]
+    md:-left-20
+    md:-top-3.75
+    md:h-137.5
+    md:w-92.5
 
-    lg:left-[-95px]
-    lg:top-[-18px]
-    lg:h-[630px]
-    lg:w-[420px]
+    lg:-left-23.75
+    lg:-top-4.5
+    lg:h-157.5
+    lg:w-105
 
     overflow-visible
   "
@@ -188,8 +172,8 @@ export default function Blessings() {
         <motion.div
           className="
             absolute
-            -left-[25px]
-            -top-[18px]
+            -left-6.25
+            -top-4.5
 
             h-full
             w-full
@@ -251,11 +235,11 @@ export default function Blessings() {
             sizes="390px"
             className="
               absolute
-              translate-x-[7px]
-              translate-y-[12px]
+              translate-x-1.75
+              translate-y-3
 
               object-contain
-              object-left-top
+              object-top-left
 
               opacity-60
 
@@ -278,11 +262,11 @@ export default function Blessings() {
             sizes="390px"
             className="
               absolute
-              translate-x-[4px]
-              translate-y-[7px]
+              translate-x-1
+              translate-y-1.75
 
               object-contain
-              object-left-top
+              object-top-left
 
               opacity-35
 
@@ -301,13 +285,14 @@ export default function Blessings() {
             alt=""
             fill
             sizes="390px"
+            style={{
+              filter:
+                "drop-shadow(0 14px 12px rgba(0,0,0,0.30)) drop-shadow(0 28px 26px rgba(0,0,0,0.20))",
+            }}
             className="
               relative
               object-contain
-              object-left-top
-
-              drop-shadow-[0_14px_12px_rgba(0,0,0,0.30)]
-              drop-shadow-[0_28px_26px_rgba(0,0,0,0.20)]
+              object-top-left
             "
           />
         </motion.div>
@@ -322,26 +307,26 @@ export default function Blessings() {
   className="
     pointer-events-none
     absolute
-    right-[-68px]
-    top-[-10px]
+    -right-17
+    -top-2.5
     z-20
-    h-[350px]
-    w-[230px]
+    h-87.5
+    w-57.5
 
-    sm:right-[-65px]
-    sm:top-[-12px]
-    sm:h-[470px]
-    sm:w-[315px]
+    sm:-right-16.25
+    sm:-top-3
+    sm:h-117.5
+    sm:w-78.75
 
-    md:right-[-80px]
-    md:top-[-15px]
-    md:h-[550px]
-    md:w-[370px]
+    md:-right-20
+    md:-top-3.75
+    md:h-137.5
+    md:w-92.5
 
-    lg:right-[-95px]
-    lg:top-[-18px]
-    lg:h-[630px]
-    lg:w-[420px]
+    lg:-right-23.75
+    lg:-top-4.5
+    lg:h-157.5
+    lg:w-105
 
     overflow-visible
   "
@@ -349,8 +334,8 @@ export default function Blessings() {
         <motion.div
           className="
             absolute
-            -right-[25px]
-            -top-[18px]
+            -right-6.25
+            -top-4.5
 
             h-full
             w-full
@@ -413,11 +398,11 @@ export default function Blessings() {
             className="
               absolute
 
-              -translate-x-[7px]
-              translate-y-[12px]
+              -translate-x-1.75
+              translate-y-3
 
               object-contain
-              object-right-top
+              object-top-right
 
               opacity-60
 
@@ -443,11 +428,11 @@ export default function Blessings() {
             className="
               absolute
 
-              -translate-x-[4px]
-              translate-y-[7px]
+              -translate-x-1
+              translate-y-1.75
 
               object-contain
-              object-right-top
+              object-top-right
 
               opacity-35
 
@@ -468,14 +453,15 @@ export default function Blessings() {
             alt=""
             fill
             sizes="390px"
+            style={{
+              filter:
+                "drop-shadow(0 14px 12px rgba(0,0,0,0.30)) drop-shadow(0 28px 26px rgba(0,0,0,0.20))",
+            }}
             className="
               relative
 
               object-contain
-              object-right-top
-
-              drop-shadow-[0_14px_12px_rgba(0,0,0,0.30)]
-              drop-shadow-[0_28px_26px_rgba(0,0,0,0.20)]
+              object-top-right
 
               -scale-x-100
             "
@@ -613,7 +599,7 @@ export default function Blessings() {
         </div>
 
         {/* 360° Rotating Divine Halo Mandala Behind Idol (mandala-f2.png) */}
-        <div className="pointer-events-none absolute left-1/2 top-[48%] -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[320px] opacity-65 mix-blend-screen z-0">
+        <div className="pointer-events-none absolute left-1/2 top-[48%] -translate-x-1/2 -translate-y-1/2 w-70 sm:w-80 opacity-65 mix-blend-screen z-0">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
@@ -624,6 +610,7 @@ export default function Blessings() {
               width={320}
               height={320}
               unoptimized
+              style={{ height: "auto" }}
               className="w-full h-auto object-contain filter drop-shadow-[0_0_25px_rgba(232,169,59,0.85)]"
             />
           </motion.div>
@@ -637,6 +624,7 @@ export default function Blessings() {
             width={64}
             height={64}
             unoptimized
+            style={{ height: "auto" }}
             className="w-full h-auto object-contain filter drop-shadow-[0_0_16px_rgba(245,158,11,0.85)]"
           />
         </div>
@@ -647,6 +635,7 @@ export default function Blessings() {
             width={64}
             height={64}
             unoptimized
+            style={{ height: "auto" }}
             className="w-full h-auto object-contain filter drop-shadow-[0_0_16px_rgba(245,158,11,0.85)] -scale-x-100"
           />
         </div>
@@ -669,6 +658,7 @@ export default function Blessings() {
             width={300}
             height={340}
             unoptimized
+            style={{ height: "auto" }}
             className="w-full h-auto object-contain filter drop-shadow-[0_12px_30px_rgba(232,169,59,0.5)]"
           />
         </motion.div>

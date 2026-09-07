@@ -383,7 +383,7 @@ export function FloatingDecoration({
       animate={{ y: [0, -10, 0] }}
       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
     >
-      <Image src={src} alt={alt} width={size} height={size} unoptimized className="h-auto w-auto object-contain drop-shadow-md" />
+      <Image src={src} alt={alt} width={size} height={size} unoptimized style={{ width: "auto", height: "auto" }} className="h-auto w-auto object-contain drop-shadow-md" />
     </motion.div>
   );
 }

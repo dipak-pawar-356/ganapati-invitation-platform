@@ -140,6 +140,7 @@ function LightboxModal({
               width={1200}
               height={900}
               unoptimized
+              style={{ width: "auto", height: "auto" }}
               className="max-h-[75vh] w-auto h-auto object-contain rounded-2xl"
               priority
             />
@@ -302,7 +303,7 @@ function DesktopShowcase({ photos, onOpenLightbox }: { photos: GalleryPhoto[]; o
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="relative min-h-0 flex-1 overflow-hidden rounded-xl cursor-pointer group"
+          className="relative min-h-[220px] w-full flex-1 overflow-hidden rounded-xl cursor-pointer group aspect-[16/9]"
         >
           <Image src={photos[0].url} alt="" fill unoptimized sizes="60vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
           <div className="absolute top-3 right-3 z-10 rounded-full bg-black/60 p-2 text-white opacity-0 group-hover:opacity-100 transition-opacity">
@@ -325,7 +326,7 @@ function DesktopShowcase({ photos, onOpenLightbox }: { photos: GalleryPhoto[]; o
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="relative overflow-hidden rounded-lg cursor-pointer group"
+              className="relative overflow-hidden rounded-lg cursor-pointer group w-full h-full min-h-[140px] aspect-[4/3]"
             >
               <Image src={photo.url} alt="" fill unoptimized sizes="33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
             </motion.div>
@@ -351,7 +352,7 @@ function DesktopShowcase({ photos, onOpenLightbox }: { photos: GalleryPhoto[]; o
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.7 }}
-                className="relative overflow-hidden rounded-lg cursor-pointer group"
+                className="relative overflow-hidden rounded-lg cursor-pointer group w-full h-full min-h-[100px] aspect-square"
               >
                 <Image src={photo.url} alt="" fill unoptimized sizes="33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
               </motion.div>
@@ -392,6 +393,7 @@ function MasonryGrid({ photos, onOpenLightbox }: { photos: GalleryPhoto[]; onOpe
               width={600}
               height={600}
               unoptimized
+              style={{ width: "100%", height: "100%" }}
               className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-3 flex flex-col justify-end">
@@ -418,6 +420,17 @@ export default function Gallery({ photos }: GalleryProps) {
   const [viewMode, setViewMode] = useState<"frame" | "masonry">("frame");
   const [selectedCategory, setSelectedCategory] = useState("सर्व");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const media = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(media.matches);
+    const listener = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, []);
 
   if (!photos || photos.length === 0) return null;
 
@@ -477,22 +490,26 @@ export default function Gallery({ photos }: GalleryProps) {
       {viewMode === "frame" ? (
         <>
           {/* MOBILE View */}
-          <div className="relative w-full md:hidden" style={{ aspectRatio: "1023 / 1537" }}>
-            <Image src="/images/backgrounds/gallery-mobile-bg.png" alt="" fill sizes="100vw" priority className="-z-10 object-cover" />
-            <div className="absolute" style={FRAME.mobile}>
-              <MobileShowcase photos={activeList} onOpenLightbox={(i) => setLightboxIndex(i)} />
-            </div>
-          </div>
-
-          {/* DESKTOP View (Constrained max width & tight temple frame bounds) */}
-          <div className="mx-auto max-w-6xl px-4">
-            <div className="relative hidden w-full md:block overflow-hidden rounded-3xl border border-[var(--t-border)] shadow-2xl" style={{ aspectRatio: "1536 / 1024", maxHeight: "650px" }}>
-              <Image src="/images/backgrounds/gallery-desktop-bg.png" alt="" fill sizes="(max-width: 1200px) 100vw, 1200px" priority className="-z-10 object-cover" />
-              <div className="absolute" style={FRAME.desktop}>
-                <DesktopShowcase photos={activeList} onOpenLightbox={(i) => setLightboxIndex(i)} />
+          {(!mounted || !isDesktop) && (
+            <div className={`relative w-full ${mounted ? "" : "md:hidden"}`} style={{ aspectRatio: "1023 / 1537" }}>
+              <Image src="/images/backgrounds/gallery-mobile-bg.png" alt="" fill sizes="(max-width: 768px) 100vw, 1px" priority className="-z-10 object-cover" />
+              <div className="absolute" style={FRAME.mobile}>
+                <MobileShowcase photos={activeList} onOpenLightbox={(i) => setLightboxIndex(i)} />
               </div>
             </div>
-          </div>
+          )}
+
+          {/* DESKTOP View (Constrained max width & tight temple frame bounds) */}
+          {mounted && isDesktop && (
+            <div className="mx-auto max-w-6xl px-4">
+              <div className="relative w-full overflow-hidden rounded-3xl border border-[var(--t-border)] shadow-2xl" style={{ aspectRatio: "1536 / 1024", maxHeight: "650px" }}>
+                <Image src="/images/backgrounds/gallery-desktop-bg.png" alt="" fill sizes="(min-width: 768px) 1200px, 1px" priority className="-z-10 object-cover" />
+                <div className="absolute" style={FRAME.desktop}>
+                  <DesktopShowcase photos={activeList} onOpenLightbox={(i) => setLightboxIndex(i)} />
+                </div>
+              </div>
+            </div>
+          )}
         </>
       ) : (
         <MasonryGrid photos={activeList} onOpenLightbox={(i) => setLightboxIndex(i)} />

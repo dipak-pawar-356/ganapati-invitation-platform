@@ -23,7 +23,8 @@ export default function CornerDecoration({
           width={size}
           height={size}
           unoptimized
-          className="w-full h-auto object-contain"
+          style={{ width: "100%", height: "100%" }}
+          className="w-full h-full object-contain"
         />
       </div>
 
@@ -35,7 +36,8 @@ export default function CornerDecoration({
           width={size}
           height={size}
           unoptimized
-          className="w-full h-auto object-contain -scale-x-100"
+          style={{ width: "100%", height: "100%" }}
+          className="w-full h-full object-contain -scale-x-100"
         />
       </div>
 
@@ -47,7 +49,8 @@ export default function CornerDecoration({
           width={size}
           height={size}
           unoptimized
-          className="w-full h-auto object-contain -scale-y-100"
+          style={{ width: "100%", height: "100%" }}
+          className="w-full h-full object-contain -scale-y-100"
         />
       </div>
 
@@ -59,7 +62,8 @@ export default function CornerDecoration({
           width={size}
           height={size}
           unoptimized
-          className="w-full h-auto object-contain -scale-x-100 -scale-y-100"
+          style={{ width: "100%", height: "100%" }}
+          className="w-full h-full object-contain -scale-x-100 -scale-y-100"
         />
       </div>
     </div>

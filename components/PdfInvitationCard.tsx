@@ -125,6 +125,7 @@ export default function PdfInvitationCard({
                   width={140}
                   height={140}
                   unoptimized
+                  style={{ width: "auto" }}
                   className="relative z-10 h-32 w-auto object-contain filter drop-shadow-[0_8px_16px_rgba(232,169,59,0.5)]"
                 />
               </div>
