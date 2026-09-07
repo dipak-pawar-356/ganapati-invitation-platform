@@ -1,4 +1,4 @@
-# SplitLedger AI / Ganapati Mandal SaaS Platform — Technical Architecture
+# Ganapati Mandal SaaS Platform — Technical Architecture
 
 This document provides a comprehensive technical deep-dive into the architectural design, database modeling, execution pipelines, security paradigms, theme engine, and component relationships of the **Adviks Softtech Ganapati Mandal Digital Invitation & Donation SaaS Platform** (codenamed `ganapati-mandal` / workspace `ganapati-invitation-platform`).
 
