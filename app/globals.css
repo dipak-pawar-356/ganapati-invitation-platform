@@ -1,0 +1,840 @@
+@import "tailwindcss";
+
+/* =========================================================
+   STATIC BASE VARIABLES (non-theme, used in :root context)
+========================================================= */
+
+:root {
+  /* Legacy named vars kept for MurtiCarousel compatibility */
+  --color-maroon: #6b1e23;
+  --color-maroon-dark: #4a1418;
+  --color-gold: #e8a93b;
+  --color-gold-light: #f3d089;
+  --color-saffron: #d96a2b;
+  --color-ivory: #fbf3e3;
+  --color-bronze: #3d2418;
+
+  /* -------------------------------------------------------
+     DEFAULT THEME TOKENS (Royal Gold - fallback)
+  ------------------------------------------------------- */
+
+  --t-bg:              #1c0609;
+  --t-bg-card:         #2a0a0e;
+  --t-bg-header:       rgba(42, 10, 14, 0.95);
+  --t-bg-footer:       #110305;
+
+  --t-primary:         #e8a93b;
+  --t-primary-light:   #f3d089;
+  --t-primary-dark:    #b8822a;
+  --t-primary-glow:    rgba(232, 169, 59, 0.50);
+  --t-primary-glow-lg: rgba(232, 169, 59, 0.65);
+  --t-primary-muted:   rgba(232, 169, 59, 0.15);
+  --t-primary-badge:   rgba(232, 169, 59, 0.20);
+
+  --t-secondary:       #d96a2b;
+  --t-secondary-hover: #c05a1f;
+
+  --t-text:            #fef9eb;
+  --t-text-soft:       rgba(254, 249, 235, 0.80);
+  --t-text-muted:      rgba(254, 249, 235, 0.60);
+
+  --t-border:          rgba(232, 169, 59, 0.40);
+  --t-border-accent:   rgba(232, 169, 59, 0.60);
+  --t-border-strong:   rgba(232, 169, 59, 0.80);
+
+  --t-card-bg:         rgba(42, 10, 14, 0.85);
+  --t-card-border:     rgba(232, 169, 59, 0.35);
+
+  --t-btn-bg-from:     #991b1b;
+  --t-btn-bg-via:      #b91c1c;
+  --t-btn-bg-to:       #7f1d1d;
+  --t-btn-text:        #fef9eb;
+  --t-btn-border:      #e8a93b;
+
+  --t-divider:         #e8a93b;
+  --t-selection-bg:    #e8a93b;
+  --t-selection-text:  #000000;
+
+  /* -------------------------------------------------------
+     ADMIN PANEL TOKENS - DARK MODE (default)
+  ------------------------------------------------------- */
+
+  --admin-bg:            #080808;
+  --admin-bg-secondary:  #111111;
+
+  --admin-card:          #141414;
+  --admin-card-hover:    #1b1b1b;
+
+  --admin-border:        #292929;
+  --admin-border-gold:   rgba(245, 158, 11, 0.18);
+
+  --admin-text:          #ffffff;
+  --admin-text-soft:     #d4d4d4;
+  --admin-text-muted:    #8a8a8a;
+
+  --admin-input-bg:      #101010;
+
+  --admin-gold:          #f59e0b;
+  --admin-gold-light:    #fcd34d;
+
+  --admin-green:         #22c55e;
+  --admin-red:           #ef4444;
+
+  --admin-shadow:        0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================================================
+   ADMIN - LIGHT MODE OVERRIDES
+========================================================= */
+
+html.admin-light {
+  --admin-bg:            #f7f7f5;
+  --admin-bg-secondary:  #ffffff;
+
+  --admin-card:          rgba(255, 255, 255, 0.9);
+  --admin-card-hover:    #ffffff;
+
+  --admin-border:        rgba(0, 0, 0, 0.08);
+  --admin-border-gold:   rgba(180, 110, 10, 0.20);
+
+  --admin-text:          #18181b;
+  --admin-text-soft:     rgba(24, 24, 27, 0.65);
+  --admin-text-muted:    rgba(24, 24, 27, 0.42);
+
+  --admin-input-bg:      #ffffff;
+
+  --admin-gold:          #c47b08;
+  --admin-gold-light:    #9a5b00;
+
+  --admin-green:         #15803d;
+  --admin-red:           #dc2626;
+
+  --admin-shadow:        0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   THEME: ROYAL GOLD
+   Feeling: Royal Temple - Luxury - Traditional
+========================================================= */
+
+[data-theme=royal-gold] {
+  --t-bg:              #1c0609;
+  --t-bg-card:         #2a0a0e;
+  --t-bg-header:       rgba(42, 10, 14, 0.95);
+  --t-bg-footer:       #110305;
+
+  --t-primary:         #e8a93b;
+  --t-primary-light:   #f3d089;
+  --t-primary-dark:    #b8822a;
+  --t-primary-glow:    rgba(232, 169, 59, 0.50);
+  --t-primary-glow-lg: rgba(232, 169, 59, 0.65);
+  --t-primary-muted:   rgba(232, 169, 59, 0.15);
+  --t-primary-badge:   rgba(232, 169, 59, 0.20);
+
+  --t-secondary:       #d96a2b;
+  --t-secondary-hover: #c05a1f;
+
+  --t-text:            #fef9eb;
+  --t-text-soft:       rgba(254, 249, 235, 0.80);
+  --t-text-muted:      rgba(254, 249, 235, 0.60);
+
+  --t-border:          rgba(232, 169, 59, 0.40);
+  --t-border-accent:   rgba(232, 169, 59, 0.60);
+  --t-border-strong:   rgba(232, 169, 59, 0.80);
+
+  --t-card-bg:         rgba(42, 10, 14, 0.85);
+  --t-card-border:     rgba(232, 169, 59, 0.35);
+
+  --t-btn-bg-from:     #991b1b;
+  --t-btn-bg-via:      #b91c1c;
+  --t-btn-bg-to:       #7f1d1d;
+  --t-btn-text:        #fef9eb;
+  --t-btn-border:      #e8a93b;
+
+  --t-divider:         #e8a93b;
+  --t-selection-bg:    #e8a93b;
+  --t-selection-text:  #000000;
+}
+
+/* =========================================================
+   THEME: PESHWAI
+   Feeling: Historic Maharashtra - Royal Fort - Traditional
+========================================================= */
+
+[data-theme=peshwai] {
+  --t-bg:              #2c0507;
+  --t-bg-card:         #3e080c;
+  --t-bg-header:       rgba(58, 8, 10, 0.95);
+  --t-bg-footer:       #1e0305;
+
+  --t-primary:         #cf6a2b;
+  --t-primary-light:   #fcd34d;
+  --t-primary-dark:    #a04f1a;
+  --t-primary-glow:    rgba(207, 106, 43, 0.50);
+  --t-primary-glow-lg: rgba(207, 106, 43, 0.65);
+  --t-primary-muted:   rgba(207, 106, 43, 0.15);
+  --t-primary-badge:   rgba(207, 106, 43, 0.20);
+
+  --t-secondary:       #8b4513;
+  --t-secondary-hover: #7a3b10;
+
+  --t-text:            #fff8ea;
+  --t-text-soft:       rgba(255, 248, 234, 0.80);
+  --t-text-muted:      rgba(255, 248, 234, 0.60);
+
+  --t-border:          rgba(207, 106, 43, 0.40);
+  --t-border-accent:   rgba(207, 106, 43, 0.60);
+  --t-border-strong:   rgba(207, 106, 43, 0.80);
+
+  --t-card-bg:         rgba(62, 8, 12, 0.85);
+  --t-card-border:     rgba(207, 106, 43, 0.35);
+
+  --t-btn-bg-from:     #7c2d12;
+  --t-btn-bg-via:      #9a3412;
+  --t-btn-bg-to:       #431407;
+  --t-btn-text:        #fff8ea;
+  --t-btn-border:      #cf6a2b;
+
+  --t-divider:         #cf6a2b;
+  --t-selection-bg:    #cf6a2b;
+  --t-selection-text:  #ffffff;
+}
+
+/* =========================================================
+   THEME: MODERN SAFFRON
+   Feeling: Premium Modern - Minimal - Elegant
+========================================================= */
+
+[data-theme=modern-saffron] {
+  --t-bg:              #180a03;
+  --t-bg-card:         #2a1308;
+  --t-bg-header:       rgba(45, 18, 5, 0.85);
+  --t-bg-footer:       #0e0602;
+
+  --t-primary:         #f97316;
+  --t-primary-light:   #fdba74;
+  --t-primary-dark:    #ea580c;
+  --t-primary-glow:    rgba(249, 115, 22, 0.50);
+  --t-primary-glow-lg: rgba(249, 115, 22, 0.65);
+  --t-primary-muted:   rgba(249, 115, 22, 0.15);
+  --t-primary-badge:   rgba(249, 115, 22, 0.20);
+
+  --t-secondary:       #c2a060;
+  --t-secondary-hover: #a8884a;
+
+  --t-text:            #fffcf5;
+  --t-text-soft:       rgba(255, 252, 245, 0.80);
+  --t-text-muted:      rgba(255, 252, 245, 0.60);
+
+  --t-border:          rgba(249, 115, 22, 0.40);
+  --t-border-accent:   rgba(249, 115, 22, 0.60);
+  --t-border-strong:   rgba(249, 115, 22, 0.80);
+
+  --t-card-bg:         rgba(42, 19, 8, 0.75);
+  --t-card-border:     rgba(249, 115, 22, 0.35);
+
+  --t-btn-bg-from:     #ea580c;
+  --t-btn-bg-via:      #dc4a08;
+  --t-btn-bg-to:       #c2410c;
+  --t-btn-text:        #ffffff;
+  --t-btn-border:      #f97316;
+
+  --t-divider:         #f97316;
+  --t-selection-bg:    #ea580c;
+  --t-selection-text:  #ffffff;
+}
+
+/* =========================================================
+   THEME: NIGHT DARSHAN
+   Feeling: Night Temple - Festival Lights - Divine
+========================================================= */
+
+[data-theme=night-darshan] {
+  --t-bg:              #050b14;
+  --t-bg-card:         #0b1d38;
+  --t-bg-header:       rgba(9, 21, 39, 0.90);
+  --t-bg-footer:       #020508;
+
+  --t-primary:         #38bdf8;
+  --t-primary-light:   #7dd3fc;
+  --t-primary-dark:    #0ea5e9;
+  --t-primary-glow:    rgba(56, 189, 248, 0.50);
+  --t-primary-glow-lg: rgba(56, 189, 248, 0.65);
+  --t-primary-muted:   rgba(56, 189, 248, 0.15);
+  --t-primary-badge:   rgba(56, 189, 248, 0.20);
+
+  --t-secondary:       #f59e0b;
+  --t-secondary-hover: #d97706;
+
+  --t-text:            #e0f2fe;
+  --t-text-soft:       rgba(224, 242, 254, 0.80);
+  --t-text-muted:      rgba(224, 242, 254, 0.60);
+
+  --t-border:          rgba(56, 189, 248, 0.35);
+  --t-border-accent:   rgba(56, 189, 248, 0.60);
+  --t-border-strong:   rgba(56, 189, 248, 0.80);
+
+  --t-card-bg:         rgba(11, 29, 56, 0.85);
+  --t-card-border:     rgba(56, 189, 248, 0.35);
+
+  --t-btn-bg-from:     #1e3a5f;
+  --t-btn-bg-via:      #1a3a7a;
+  --t-btn-bg-to:       #1d4ed8;
+  --t-btn-text:        #e0f2fe;
+  --t-btn-border:      #38bdf8;
+
+  --t-divider:         #38bdf8;
+  --t-selection-bg:    #38bdf8;
+  --t-selection-text:  #000000;
+}
+
+/* =========================================================
+   FONT THEME
+========================================================= */
+
+@theme inline {
+  --font-sans: var(--font-body), Mukta, Noto Sans Devanagari, system-ui, sans-serif;
+  --font-display: var(--font-display), Rozha One, Mukta, Noto Sans Devanagari, sans-serif;
+}
+
+/* =========================================================
+   BASE BODY
+========================================================= */
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-bronze);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+/* =========================================================
+   FORM SCROLL AREA
+========================================================= */
+
+.form-scroll-area {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2px 4px 20px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--t-border) transparent;
+}
+
+.form-scroll-area::-webkit-scrollbar { width: 5px; }
+.form-scroll-area::-webkit-scrollbar-track { background: transparent; }
+.form-scroll-area::-webkit-scrollbar-thumb {
+  background: var(--t-border);
+  border-radius: 999px;
+}
+.form-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: var(--t-border-accent);
+}
+
+@media (max-width: 640px) {
+  .form-panel { max-height: calc(100vh - 245px); }
+}
+
+/* =========================================================
+   ADMIN FONT
+========================================================= */
+
+.admin-page,
+.admin-login-page {
+  font-family: var(--font-inter), Inter, Arial, sans-serif;
+}
+
+/* =========================================================
+   ADMIN PAGE
+========================================================= */
+
+.admin-page {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.07), transparent 35%),
+    var(--admin-bg);
+  color: var(--admin-text);
+  padding: 32px 20px 70px;
+  transition: background 350ms ease, color 350ms ease;
+}
+
+.admin-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 80% 10%, rgba(245, 158, 11, 0.06), transparent 25%),
+    radial-gradient(circle at 10% 80%, rgba(120, 53, 15, 0.08), transparent 30%);
+  pointer-events: none;
+}
+
+.admin-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.05));
+}
+
+.admin-light .admin-overlay {
+  background: linear-gradient(180deg, rgba(255,255,255,0.25), rgba(255,255,255,0));
+}
+
+.admin-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   ADMIN HEADER
+========================================================= */
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 30px;
+  animation: fadeUp 600ms ease both;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 21px;
+}
+
+.brand-logo {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--admin-border-gold);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  transition: transform 250ms ease, border-color 250ms ease;
+}
+.brand-logo:hover { transform: translateY(-2px) scale(1.03); }
+.brand-logo img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
+
+.brand-divider { width: 1px; height: 28px; background: var(--admin-border); }
+.brand-small { margin: 0; color: var(--admin-gold); font-size: 9px; font-weight: 800; letter-spacing: 0.25em; }
+.brand-label { margin: 3px 0 0; color: var(--admin-text-muted); font-size: 10px; letter-spacing: 0.01em; }
+
+.dashboard-title {
+  margin: 0;
+  color: var(--admin-text);
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+.dashboard-subtitle { margin: 9px 0 0; color: var(--admin-text-muted); font-size: 13px; line-height: 1.5; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+/* =========================================================
+   ADMIN STATUS
+========================================================= */
+
+.dashboard-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 9px 13px;
+  border: 1px solid rgba(34,197,94,0.16);
+  border-radius: 999px;
+  color: var(--admin-green);
+  background: rgba(34,197,94,0.06);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 12px rgba(34,197,94,0.65);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* =========================================================
+   THEME TOGGLE
+========================================================= */
+
+.theme-toggle {
+  width: 72px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+  border: 1px solid var(--admin-border);
+  border-radius: 999px;
+  background: var(--admin-card);
+  cursor: pointer;
+  backdrop-filter: blur(15px);
+  transition: background 250ms ease, border-color 250ms ease;
+}
+.theme-toggle:hover { border-color: var(--admin-border-gold); }
+
+.theme-toggle-icon {
+  width: 29px;
+  height: 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--admin-text-muted);
+  font-size: 13px;
+  transition: all 250ms ease;
+}
+.theme-toggle-icon.active {
+  color: var(--admin-text);
+  background: rgba(245,158,11,0.16);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+/* =========================================================
+   ADMIN CARDS
+========================================================= */
+
+.stat-card,
+.submission-card,
+.approved-item,
+.empty-state {
+  background: var(--admin-card);
+  border-color: var(--admin-border);
+  box-shadow: var(--admin-shadow);
+  transition: background 350ms ease, border-color 250ms ease, color 350ms ease, box-shadow 350ms ease;
+}
+.stat-card:hover,
+.submission-card:hover {
+  background: var(--admin-card-hover);
+  border-color: var(--admin-border-gold);
+}
+
+.stat-label, .section-description, .info-label, .gallery-header, .action-hint {
+  color: var(--admin-text-muted);
+}
+.stat-value, .section-title, .mandal-name { color: var(--admin-text); }
+.stat-description, .info-value { color: var(--admin-text-soft); }
+
+.submission-card {
+  background: linear-gradient(145deg, var(--admin-card), rgba(255,255,255,0.015));
+  border: 1px solid var(--admin-border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--admin-shadow);
+}
+
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
+
+.admin-login-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(245,158,11,0.08), transparent 35%),
+    var(--admin-bg);
+  color: var(--admin-text);
+  transition: background 350ms ease, color 350ms ease;
+}
+
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 390px;
+  padding: 36px;
+  border: 1px solid var(--admin-border-gold);
+  border-radius: 24px;
+  text-align: center;
+  background: var(--admin-card);
+  box-shadow: var(--admin-shadow);
+  backdrop-filter: blur(22px);
+  animation: loginEnter 700ms ease both;
+}
+
+.login-logo {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  padding: 10px;
+  border: 1px solid var(--admin-border-gold);
+  border-radius: 20px;
+  background: rgba(255,255,255,0.035);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.18);
+}
+.login-logo img { width: 100%; height: 100%; object-fit: contain; }
+.login-title { color: var(--admin-text); }
+.login-description { color: var(--admin-text-muted); }
+
+/* =========================================================
+   ADMIN INPUT
+========================================================= */
+
+.input-group label { color: var(--admin-text-soft); }
+.input-group input {
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text);
+  background: rgba(127,127,127,0.06);
+}
+.input-group input::placeholder { color: var(--admin-text-muted); }
+.input-group input:focus {
+  border-color: var(--admin-gold);
+  box-shadow: 0 0 0 3px rgba(245,158,11,0.08);
+}
+
+/* =========================================================
+   ADMIN RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+  .dashboard-header { align-items: flex-start; flex-direction: column; }
+  .header-actions { width: 100%; justify-content: space-between; }
+}
+
+@media (max-width: 600px) {
+  .admin-page { padding: 20px 11px 45px; }
+  .brand-logo { width: 40px; height: 40px; }
+  .dashboard-title { font-size: 27px; }
+  .dashboard-subtitle { max-width: 300px; }
+  .login-card { padding: 28px 21px; border-radius: 21px; }
+  .login-logo { width: 70px; height: 70px; }
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes loginEnter {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* =========================================================
+   NO SCROLLBAR
+========================================================= */
+
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* =========================================================
+   GARLAND SWING
+========================================================= */
+
+@keyframes garland-swing-left {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+@keyframes garland-swing-right {
+  0%, 100% { transform: rotate(6deg); }
+  50% { transform: rotate(-6deg); }
+}
+.garland-swing-left {
+  transform-origin: top center;
+  animation: garland-swing-left 3.2s ease-in-out infinite;
+}
+.garland-swing-right {
+  transform-origin: top center;
+  animation: garland-swing-right 3.2s ease-in-out infinite;
+}
+
+/* =========================================================
+   DIVINE HALO
+========================================================= */
+
+@keyframes divine-halo-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.45; }
+  50% { transform: translate(-50%, -50%) scale(1.12); opacity: 0.85; }
+}
+.animate-divine-halo { animation: divine-halo-pulse 3.8s ease-in-out infinite; }
+
+/* =========================================================
+   DATE PICKER + SELECT
+========================================================= */
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8) sepia(1) saturate(4) hue-rotate(355deg);
+  cursor: pointer;
+}
+
+select option {
+  background-color: #1f0609 !important;
+  color: #fef9eb !important;
+}
+
+/* =========================================================
+   BELL SWING
+========================================================= */
+
+@keyframes bell-swing {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  50% { transform: rotate(-15deg); }
+  75% { transform: rotate(8deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* =========================================================
+   FLOWER BURST
+========================================================= */
+
+@keyframes flower-burst-upward {
+  0% { transform: translate(0, 0) rotate(0deg) scale(0.2); opacity: 0; }
+  8% { opacity: 1; transform: translate(calc(var(--target-x) * 0.35), calc(var(--target-y) * 0.45)) rotate(var(--rot-mid)) scale(1.2); }
+  30% { opacity: 1; transform: translate(var(--target-x), var(--target-y)) rotate(var(--rot-peak)) scale(1); }
+  65% { opacity: 0.95; transform: translate(calc(var(--target-x) + var(--drift-x)), calc(var(--target-y) + 120px)) rotate(var(--rot-fall)) scale(0.92); }
+  100% { opacity: 0; transform: translate(calc(var(--target-x) + (var(--drift-x) * 1.8)), calc(var(--target-y) + 380px)) rotate(var(--rot-end)) scale(0.65); }
+}
+
+/* =========================================================
+   FLOAT SLOW
+========================================================= */
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+.animate-float-slow { animation: float-slow 5s ease-in-out infinite; }
+
+/* =========================================================
+   GLOW PULSE (theme-aware via CSS vars)
+========================================================= */
+
+@keyframes glow-pulse-gold {
+  0%, 100% { box-shadow: 0 0 15px var(--t-primary-muted); }
+  50% { box-shadow: 0 0 35px var(--t-primary-glow); }
+}
+.animate-glow-pulse-gold { animation: glow-pulse-gold 3s ease-in-out infinite; }
+
+/* =========================================================
+   SHIMMER
+========================================================= */
+
+@keyframes shimmer-fast {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+.animate-shimmer { animation: shimmer-fast 2.5s infinite; }
+
+/* =========================================================
+   ROTATE ULTRA SLOW
+========================================================= */
+
+@keyframes rotate-ultra-slow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.animate-rotate-ultra-slow { animation: rotate-ultra-slow 120s linear infinite; }
+
+/* =========================================================
+   BELL SWING GENTLE
+========================================================= */
+
+@keyframes bell-swing-gentle {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50% { transform: rotate(2.5deg); }
+}
+.animate-bell-swing-gentle {
+  transform-origin: top center;
+  animation: bell-swing-gentle 5.5s ease-in-out infinite;
+}
+
+/* =========================================================
+   DIYA FLAME (theme-aware via CSS vars)
+========================================================= */
+
+@keyframes diya-flame-pulse {
+  0%, 100% { filter: drop-shadow(0 0 10px var(--t-primary-glow)) brightness(1); }
+  50% { filter: drop-shadow(0 0 24px var(--t-primary-glow-lg)) brightness(1.2); }
+}
+.animate-diya-flame { animation: diya-flame-pulse 3s ease-in-out infinite; }
+
+/* =========================================================
+   FLOWER FLOAT
+========================================================= */
+
+@keyframes flower-float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(3deg); }
+}
+.animate-flower-float { animation: flower-float-gentle 6s ease-in-out infinite; }
+
+@keyframes flower-float-reverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(7px) rotate(-3deg); }
+}
+.animate-flower-float-reverse { animation: flower-float-reverse 7s ease-in-out infinite; }
+
+/* =========================================================
+   PETAL DRIFT
+========================================================= */
+
+@keyframes petal-drift-natural {
+  0% { transform: translateY(-20px) translateX(0px) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.85; }
+  50% { transform: translateY(180px) translateX(25px) rotate(120deg); opacity: 0.9; }
+  85% { opacity: 0.7; }
+  100% { transform: translateY(380px) translateX(-15px) rotate(260deg); opacity: 0; }
+}
+.animate-petal-drift { animation: petal-drift-natural 14s linear infinite; }
+
+/* =========================================================
+   GLASS REFLECTION
+========================================================= */
+
+.glass-reflection { position: relative; overflow: hidden; }
+
+.glass-reflection::after {
+  content: "";
+  position: absolute;
+ top: -50%;
+ left: -50%;
+ width: 200%;
+ height: 200%;
+ background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.12) 50%, transparent 55%);
+ transform: translateX(-100%);
+ transition: transform 0.8s ease-in-out;
+ pointer-events: none;
+}
+
+.glass-reflection:hover::after { transform: translateX(100%); }

@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "ganapati-mandal",
+			"path": "."
+		},
+		{
+			"name": "lib",
+			"path": "../lib"
+		},
+		{
+			"name": "db",
+			"path": "./db"
+		}
+	],
+	"settings": {}
+}
