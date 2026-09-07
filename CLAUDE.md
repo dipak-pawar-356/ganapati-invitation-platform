@@ -1,164 +1,131 @@
-# CLAUDE.md — Claude Code Developer Manual
+# CLAUDE.md — Claude Code Developer Manual & Operational Guide
 
-This document provides definitive instructions, coding rules, architectural guidelines, and operational patterns for **Claude Code** when working on the **Ganapati Mandal Digital Invitation & Donation Platform** (`ganapati-invitation-platform` / package `ganapati-mandal`).
-
----
-
-## 1. Core Principles & Non-Negotiable Mandates
-
-1. **Never Break Existing Functionality**: Every change must preserve backwards compatibility with all 4 themes, active tenant sites (`/[slug]`), and admin portals.
-2. **Zero Assumptions**: Never hallucinate database tables, API routes, or features. Always check `db/schema.ts`, `lib/mandal-actions.ts`, and `PROJECT_ARCHITECTURE.md`.
-3. **Preserve Financial & Donation Accuracy**: Never alter donation calculation logic, UTR tracking, transaction statuses (`pending`, `verified`, `rejected`), or Razorpay HMAC SHA-256 verification routines.
-4. **Preserve Audit Trail**: Whenever modifying mandal core data, timeline, gallery, or committee records in server actions, always invoke `saveVersionHistory()`.
-5. **Never Hardcode Secrets or Credentials**: Never put raw database connection strings, passwords, or API keys in code or commit messages. Always use environment variables (`process.env.DATABASE_URL`, `process.env.PLATFORM_ADMIN_PASSWORD`).
-6. **Reuse Existing Components & Utilities**:
-   - Slugification: Always use `slugify()` and `getUniqueSlug()` from `lib/slug.ts`.
-   - Database: Always use the Drizzle instance `db` from `db/index.ts`.
-   - Image Compression: Always use `uploadPhoto()` / `uploadPhotos()` from `lib/photo-upload.ts`.
-   - Design System: Always check `components/common/DesignSystem.tsx`, `components/common/SectionDivider.tsx`, and `components/common/ThemeDecorations.tsx`.
-7. **Mobile-First Mindset**: 80% of devotees access invitations on smartphones. Always test UI layouts, touch targets, and typography on small viewports first.
+This document is the **definitive AI coding guide** for **Claude Code** when working in the **Adviks SoftTech Ganapati Mandal SaaS Platform** (`ganapati-invitation-platform` / package `ganapati-mandal`). It provides strict architectural principles, database rules, coding conventions, operational recipes, and safety checklists.
 
 ---
 
-## 2. Project Architecture & Technology Map
+## 1. Project Overview & Multi-Tenant Paradigm
 
-- **Framework**: Next.js 16.3.1 (App Router, Server Actions, Dynamic Routes)
-- **UI Engine**: React 19.2.8
-- **Styling**: Tailwind CSS 4 with CSS Custom Properties (`var(--t-primary)`, `var(--t-bg)`, `var(--admin-gold)`)
-- **Database**: Neon Serverless PostgreSQL with connection pooler (`@neondatabase/serverless` HTTP driver)
-- **ORM**: Drizzle ORM v0.45.2 (`drizzle-orm/neon-http`, `drizzle-orm/pg-core`)
-- **Animations**: Framer Motion 13.1 & GSAP 3.15
-- **Payment Gateway**: Razorpay 2.9.8 (lazy singleton in `lib/razorpay.ts`)
+The repository hosts the **Adviks SoftTech Ganapati Mandal Digital Invitation & Online Donation SaaS Platform**.
+- **Architecture**: Next.js 16 (App Router), React 19, Tailwind CSS 4, Neon Serverless PostgreSQL with Drizzle ORM.
+- **Tenancy**: Multi-tenant via URL slug (`/[slug]`).
+- **Core Tables**: 10 relational tables in `db/schema.ts` (`mandals`, `users`, `mandal_credentials`, `version_history`, `payments`, `timeline_events`, `gallery_items`, `committee_members`, `murti_photos`, `donation_transactions`).
+- **Themes**: 4 interchangeable spiritual themes rendered dynamically via `components/themes/ThemeRenderer.tsx`.
 
 ---
 
-## 3. Coding Standards & Conventions
+## 2. Folder Structure & Responsibilities
 
-### 3.1 TypeScript & Next.js Rules
-- **Server Actions**: Must declare `"use server";` at the top of the file or action body.
-- **Client Components**: Must declare `"use client";` at the top of the file whenever using React hooks (`useState`, `useEffect`), browser APIs (`window`, `localStorage`, `navigator`), or Framer Motion/GSAP.
-- **Async Route Params**: Next.js 16 requires `params` and `searchParams` in server components and routes to be typed as Promises:
+| Folder | Responsibility | Rules & Conventions |
+| :--- | :--- | :--- |
+| `app/` | Next.js 16 App Router pages, layouts, and route handlers | Keep server components default. Client components must declare `"use client";`. All `params` and `searchParams` are Promises. |
+| `app/[slug]/` | Public tenant invitation layout | Never render unapproved mandals (`status !== 'approved'`). |
+| `app/admin/` | Unified admin dashboard, login, database inspector, and previews | Gated by `requirePlatformAdmin()` or `requireMandalAdmin()`. |
+| `app/api/` | Public and internal REST API handlers | Route handlers must return `NextResponse.json()` with explicit HTTP status codes. |
+| `components/` | Reusable React 19 UI components | Mobile-first; never hardcode colors, use theme CSS variables. |
+| `components/admin/`| Specialized admin panels (editor, credentials, donations, history) | Keep logic reactive with modular sub-components. |
+| `components/themes/`| The 4 spiritual theme implementations and `ThemeRenderer.tsx` | Must consume identical `FullMandalData` props without data loss. |
+| `db/` | Neon connection (`index.ts`), schema (`schema.ts`), and seed script (`seed.ts`) | Only modify schema when running `npm run db:push` immediately after. |
+| `docs/` | Modular technical architecture manuals | Keep documentation updated when altering database or API contracts. |
+| `lib/` | Core server actions, auth, photo compression, slugification, Razorpay | Server actions must declare `"use server";` and use `handleActionError()`. |
+| `public/` | Static media assets (audio, videos, transparent murtis, branding) | Optimize all asset formats (WebP/SVG preferred). |
+
+---
+
+## 3. Strict Coding & Naming Standards
+
+### 3.1 Naming Conventions
+- **Files & Components**: PascalCase for React components (`Hero.tsx`, `Theme1RoyalGold.tsx`, `AdminSidebar.tsx`).
+- **Utilities & Actions**: kebab-case for utility files (`mandal-actions.ts`, `photo-upload.ts`, `admin-auth.ts`).
+- **Database Tables & Columns**:
+  - Drizzle table exports: camelCase (`timelineEvents`, `galleryItems`, `donationTransactions`).
+  - SQL column names: snake_case (`mandal_id`, `event_date`, `display_order`, `utr_number`).
+- **Server Actions**: camelCase ending in `Action` (`approveMandalAction()`, `submitDonationTransactionAction()`).
+
+### 3.2 React 19 & Next.js 16 Guidelines
+- **Server Actions**: Always declare `"use server";` at the top of the file or action function.
+- **Client Components**: Always declare `"use client";` when using React state, effects, or browser events.
+- **Async Route Params**: Next.js 16 requires awaiting route parameters:
   ```typescript
   export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     // ...
   }
   ```
-- **Error Handling in Server Actions**: Never crash server actions silently. Use the established pattern:
-  ```typescript
-  try {
-    // operation
-  } catch (error) {
-    handleActionError(error, "Action Context Name");
-  }
-  ```
-
-### 3.2 Database & Drizzle Rules
-- All tables must be defined in `db/schema.ts` using `pgTable`.
-- Primary keys must use `uuid("id").defaultRandom().primaryKey()`.
-- Foreign keys must explicitly specify `{ onDelete: "cascade" }`.
-- Foreign key columns must be indexed in the table builder callback:
-  ```typescript
-  export const myTable = pgTable("my_table", {
-    id: uuid("id").defaultRandom().primaryKey(),
-    mandalId: uuid("mandal_id").notNull().references(() => mandals.id, { onDelete: "cascade" }),
-    // ...
-  }, (table) => [
-    index("my_table_mandal_idx").on(table.mandalId),
-  ]);
-  ```
-- After modifying `db/schema.ts`, apply changes with `npx drizzle-kit push`.
-
-### 3.3 UI & CSS Theme Tokens
-The platform uses dynamic CSS custom properties tailored for cultural mandal themes. Never hardcode colors directly when building theme-aware components; use theme tokens:
-- Primary Gold Accent: `var(--t-primary)`
-- Secondary Accent: `var(--t-secondary)`
-- Theme Background: `var(--t-bg)`
-- Theme Card Background: `var(--t-bg-card)`
-- Text High-Contrast: `var(--t-text)`
-- Soft Text: `var(--t-text-soft)`
-- Admin Panel Background: `var(--admin-bg)`
-- Admin Card Background: `var(--admin-card)`
-- Admin Gold Accent: `var(--admin-gold)`
-
-### 3.4 Marathi Language & Devanagari Guidelines
-- The public tenant experience is primarily in Marathi.
-- Standard terminology:
-  - मंडळाचे नाव (Mandal Name)
-  - स्थापना वर्ष (Established Year)
-  - निमंत्रण संदेश (Invitation Message)
-  - आरती वेळापत्रक (Aarti Schedule)
-  - देणगी / वर्गणी (Donation)
-  - छायाचित्र दालन (Photo Gallery)
-  - उत्सव समिती (Festival Committee)
-  - सुपर ॲडमिन (Super Admin)
-  - मंजुरी प्रलंबित (Pending Approval)
+- **Hydration Warning Suppression**: If rendering client-side timestamps or random numbers, use `suppressHydrationWarning` on the specific HTML tag.
+- **Cache Revalidation**: Always call `revalidatePath('/[slug]')` and `revalidatePath('/admin')` following any tenant mutation.
 
 ---
 
-## 4. Role-Based Access Control (RBAC) Rules
+## 4. Database Rules (Neon & Drizzle ORM)
 
-1. **Platform Super Admin (`PLATFORM_ADMIN`)**:
-   - Access verified via `requirePlatformAdmin()` in `lib/auth.ts`.
-   - Has full access to all mandals, can change tenant statuses, view credentials vault, and delete records.
-2. **Mandal Admin (`MANDAL_ADMIN`)**:
-   - Access verified via `requireMandalAdmin(mandalId)` in `lib/auth.ts`.
-   - Cannot access or modify records belonging to other mandal tenants.
-3. **Unapproved Tenant Shielding**:
-   - Any mandal with `status !== 'approved' && status !== 'published'` must never render publicly on `/[slug]`.
-   - Always display the pending approval shield screen unless accessed by a verified `PLATFORM_ADMIN` via `/admin/preview/[mandalId]`.
-
----
-
-## 5. Instructions for Common Claude Tasks
-
-### Task 1: How Claude Should Add a New Feature
-1. **Locate Architectural Placement**: Check `PROJECT_ARCHITECTURE.md` to identify affected layers (database table, server action, API endpoint, theme component, or admin panel).
-2. **Update Schema (if needed)**: Add columns or tables in `db/schema.ts` with proper indexes, types, and cascade rules.
-3. **Implement Server Action**: Add strongly typed mutations in `lib/mandal-actions.ts` or `lib/admin-actions.ts`. Enforce authorization (`requirePlatformAdmin()` or `requireMandalAdmin()`).
-4. **Preserve Snapshot**: If tenant content changes, invoke `saveVersionHistory()`.
-5. **Update UI Components**: Integrate into `components/admin/MandalContentEditor.tsx` and the 4 themes in `components/themes/`.
-6. **Revalidate Next.js Cache**: Include `revalidatePath('/[slug]')` and `revalidatePath('/admin')`.
-
-### Task 2: How Claude Should Fix Bugs
-1. **Diagnose without Assumptions**: Inspect the exact lines of code where the error originates.
-2. **Check Database Availability**: If database queries fail, verify `process.env.DATABASE_URL` and ensure connection pooler parameters are present (`?sslmode=require`).
-3. **Verify Null Safety**: Always account for optional fields (`logoUrl`, `heroVideoUrl`, `upiId`, `mapsLink`) when rendering UI.
-4. **Hydration Warning Prevention**: If displaying timestamps or random numbers on client components, use `suppressHydrationWarning` on the specific HTML node.
-5. **Test Mobile Breakpoints**: Ensure that bug fixes do not introduce horizontal scrollbars on mobile screens (`overflow-x-hidden`).
-
-### Task 3: How Claude Should Refactor Code
-1. **Never Change Component Prop Interfaces**: When refactoring shared components (`Hero.tsx`, `Timeline.tsx`, `Gallery.tsx`, `DonationWidget.tsx`), ensure existing prop shapes remain backwards-compatible with all 4 themes.
-2. **Never Duplicate Existing Helpers**: Before creating a slugifier, password generator, or database query, search `lib/` for existing implementations.
-3. **Preserve Dead Code Warnings**: If cleaning up code, report unused files in `DOCUMENTATION_CHANGELOG.md` rather than deleting without user confirmation.
+1. **Cascade Deletions**: Every foreign key referencing `mandals.id` MUST specify `{ onDelete: "cascade" }`.
+2. **Explicit Indexes**: All foreign key columns and frequently queried filter columns (`slug`, `status`, `refNumber`) must have explicit indexes in the table builder callback:
+   ```typescript
+   (table) => [
+     index("timeline_mandal_idx").on(table.mandalId),
+   ]
+   ```
+3. **No Direct DDL in Production**: Never execute raw unchecked DDL statements. Always modify `db/schema.ts` and apply changes via `npm run db:push`.
+4. **Point-in-Time Audit Trail**: Every server action modifying tenant data must invoke `saveVersionHistory(mandalId, changeSummary, editedBy)`.
 
 ---
 
-## 6. Development & Verification Commands
+## 5. Security & Permission Rules
 
-```bash
-# Start local development server
-npm run dev
-
-# Run TypeScript & Lint checks
-npm run lint
-
-# Push schema changes to Neon DB
-npm run db:push
-
-# Seed demo mandals & credentials
-npm run db:seed
-
-# Production build verification
-npm run build
-```
+1. **Role Hierarchy**:
+   - `PLATFORM_ADMIN`: Super admin with global authority. Gated via `requirePlatformAdmin()`.
+   - `MANDAL_ADMIN`: Tenant admin with authority restricted to their own `mandalId`. Gated via `requireMandalAdmin(mandalId)`.
+2. **Password Standards**: Passwords must be hashed using `bcryptjs` with `10` salt rounds. Plaintext passwords must never be stored in the `users` table.
+3. **Session Cookie**: Sessions reside in the HTTP-only cookie `mandal_saas_session`. Never expose session tokens to client-side scripts.
+4. **Unapproved Tenant Shielding**: Mandals with `status !== 'approved'` must never render public invitation layouts on `/[slug]`.
 
 ---
 
-## 7. Operational Prompting Guidelines
+## 6. Financial & Donation Rules
 
-When the user asks you to modify or extend the codebase, follow this internal sequence:
-1. **Analyze Dependencies**: What existing files import or call the target code?
-2. **Check Data Integrity**: Does this operation impact tenant separation, financial records, or credentials?
-3. **Execute Minimal, Robust Edits**: Write concise, surgical edits without removing surrounding docstrings or logic.
-4. **Verify Build**: Ensure no TypeScript or build regressions were introduced.
+1. **Donation Status Lifecycle**: Incoming donations default to `status = 'pending'`. Only an authenticated Mandal Admin or Super Admin can mark a donation as `verified` after checking the 12-digit UTR against bank records.
+2. **Zero Tampering**: Never silently modify incoming donation amounts, UTR numbers, or transaction IDs.
+3. **Razorpay Validation**: Razorpay order verification strictly requires cryptographic HMAC SHA-256 signature matching using `RAZORPAY_KEY_SECRET`.
+4. **Devanagari WhatsApp Formatting**: Donation WhatsApp notifications must follow the established Devanagari template (`🙏 *नवीन देणगी प्राप्त* ...`).
+
+---
+
+## 7. Operational Prompting Recipes for Claude
+
+### Recipe 1: How Claude Should Add a New Feature
+1. Review `PROJECT_ARCHITECTURE.md` to identify affected layers.
+2. If schema updates are needed, add columns to `db/schema.ts` with appropriate indexes and cascade rules.
+3. Add or update server actions in `lib/mandal-actions.ts` with authorization guards (`requirePlatformAdmin()` or `requireMandalAdmin()`).
+4. Ensure `saveVersionHistory()` is called to record the change snapshot.
+5. Update `components/admin/MandalContentEditor.tsx` and the 4 theme renderers in `components/themes/`.
+6. Invoke `revalidatePath('/[slug]')` and `revalidatePath('/admin')`.
+
+### Recipe 2: How Claude Should Fix Bugs
+1. Inspect the exact code origin; do not guess.
+2. Ensure proper null-checks on optional mandal fields (`logoUrl`, `heroVideoUrl`, `upiId`, `mapsLink`).
+3. If handling database errors, route through `handleActionError()`.
+4. Ensure mobile viewports (360px–420px) render cleanly without horizontal overflow.
+
+### Recipe 3: How Claude Should Perform Refactoring
+1. Never alter component prop shapes if it breaks any of the 4 spiritual themes.
+2. Never duplicate existing utilities (`slugify`, `uploadPhoto`, `db`).
+3. Document any dead code findings in `DOCUMENTATION_CHANGELOG.md` instead of deleting without notice.
+
+---
+
+## 8. Do's and Don'ts
+
+### ✅ DO
+- Always design mobile-first (360px–420px width).
+- Always compress client-side images using `uploadPhoto()` from `lib/photo-upload.ts`.
+- Always use theme CSS variables (`var(--t-primary)`, `var(--t-bg)`) instead of hardcoded hex codes.
+- Always use `revalidatePath` to keep Next.js edge caches fresh.
+- Always preserve Marathi Devanagari terminology in tenant-facing UI.
+
+### ❌ DON'T
+- Never invent fake features (no personal expense splitters or unrelated tools).
+- Never hardcode API keys, passwords, or connection strings in code.
+- Never bypass the pending moderation check on `/[slug]`.
+- Never remove the Next.js agent block in `AGENTS.md`.
+- Never use `dangerouslySetInnerHTML`.
