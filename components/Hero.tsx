@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef } from "react";
 import Image from "next/image";
@@ -38,8 +38,14 @@ export default function Hero({
 
   const playBellSound = () => {
     if (typeof window !== "undefined") {
-      const bellAudio = new Audio("/audio/temple-bell.mp3");
-      bellAudio.play().catch(() => {});
+      try {
+        const bellAudio = new Audio("/audio/temple-bell.mp3");
+        bellAudio.currentTime = 0;
+        bellAudio.volume = 0.85;
+        bellAudio.play().catch(() => {});
+      } catch {
+        // Safe audio playback fallback
+      }
     }
   };
 
@@ -137,39 +143,57 @@ export default function Hero({
       {/* LAYER 2: INTERACTIVE TEMPLE BELLS (PROMINENT SIZE & TOP RANGE ALIGNMENT WITH GARLANDS) */}
       <div
         onClick={playBellSound}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            playBellSound();
+          }
+        }}
         suppressHydrationWarning
-        className="pointer-events-auto absolute left-10 sm:left-16 md:left-24 lg:left-28 top-2 sm:top-4 md:top-5 z-30 w-11 sm:w-16 md:w-20 lg:w-24 animate-bell-swing-gentle cursor-pointer hover:scale-110 active:scale-95 transition-transform"
+        className="pointer-events-auto absolute left-10 sm:left-16 md:left-24 lg:left-28 top-2 sm:top-4 md:top-5 z-40 w-11 sm:w-16 md:w-20 lg:w-24 cursor-pointer origin-top hover:scale-110 active:scale-95 transition-transform duration-300 select-none"
         role="button"
         tabIndex={0}
         aria-label="Play Temple Bell Sound"
       >
-        <Image
-          src="/images/bells/temple-bell.png"
-          alt=""
-          width={84}
-          height={160}
-          unoptimized
-          className="w-full h-auto object-contain filter drop-shadow-[0_14px_22px_var(--t-primary-glow-lg)]"
-        />
+        <div className="w-full h-full animate-bell-swing-gentle origin-top">
+          <Image
+            src="/images/bells/temple-bell.png"
+            alt="Play Temple Bell Sound"
+            width={84}
+            height={160}
+            unoptimized
+            className="w-full h-auto object-contain filter drop-shadow-[0_14px_22px_var(--t-primary-glow-lg,rgba(232,169,59,0.65))] transition-all"
+          />
+        </div>
       </div>
 
       <div
         onClick={playBellSound}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            playBellSound();
+          }
+        }}
         suppressHydrationWarning
-        className="pointer-events-auto absolute right-10 sm:right-16 md:right-24 lg:right-28 top-2 sm:top-4 md:top-5 z-30 w-11 sm:w-16 md:w-20 lg:w-24 animate-bell-swing-gentle cursor-pointer hover:scale-110 active:scale-95 transition-transform"
-        style={{ animationDelay: "1.4s" }}
+        className="pointer-events-auto absolute right-10 sm:right-16 md:right-24 lg:right-28 top-2 sm:top-4 md:top-5 z-40 w-11 sm:w-16 md:w-20 lg:w-24 cursor-pointer origin-top hover:scale-110 active:scale-95 transition-transform duration-300 select-none"
         role="button"
         tabIndex={0}
         aria-label="Play Temple Bell Sound"
       >
-        <Image
-          src="/images/bells/temple-bell.png"
-          alt=""
-          width={84}
-          height={160}
-          unoptimized
-          className="w-full h-auto object-contain filter drop-shadow-[0_14px_22px_var(--t-primary-glow-lg)]"
-        />
+        <div
+          className="w-full h-full animate-bell-swing-gentle origin-top"
+          style={{ animationDelay: "1.4s" }}
+        >
+          <Image
+            src="/images/bells/temple-bell.png"
+            alt="Play Temple Bell Sound"
+            width={84}
+            height={160}
+            unoptimized
+            className="w-full h-auto object-contain filter drop-shadow-[0_14px_22px_var(--t-primary-glow-lg,rgba(232,169,59,0.65))] transition-all"
+          />
+        </div>
       </div>
 
       {/* FIXED SIDE BORDER LINE MANDALAS (STATIC, NO ROTATION, FIXED ON LEFT & RIGHT MIDDLE BORDER LINES) */}
@@ -219,7 +243,7 @@ export default function Hero({
       {/* =====================================================
           4. MAIN HERO CONTENT CONTAINER (VISUAL HIERARCHY)
       ====================================================== */}
-      <div className="relative z-30 mx-auto flex w-full max-w-4xl flex-col items-center text-center pt-24 sm:pt-32 md:pt-36 lg:pt-40 pb-8 px-4 flex-1">
+      <div className="relative z-20 mx-auto flex w-full max-w-4xl flex-col items-center text-center pt-24 sm:pt-32 md:pt-36 lg:pt-40 pb-8 px-4 flex-1 pointer-events-none [&>*]:pointer-events-auto">
 
         {/* WELCOME TEXT (CLEAR OF TOP TORAN) */}
         <div className="w-full max-w-2xl px-2 relative z-30">
