@@ -400,7 +400,19 @@ export async function submitCustomerRequestAction(input: {
 
     // Generate temporary reference details
     const refNumber = generateRefNumber();
-    const temporarySlug = `pending-${refNumber.toLowerCase()}`;
+    let temporarySlug = `pending-${refNumber.toLowerCase()}`;
+
+    // Guarantee unique slug before insertion
+    const existingSlug = await db
+      .select({ id: mandals.id })
+      .from(mandals)
+      .where(eq(mandals.slug, temporarySlug))
+      .limit(1);
+
+    if (existingSlug && existingSlug.length > 0) {
+      temporarySlug = `pending-${refNumber.toLowerCase()}-${crypto.randomBytes(2).toString("hex").toLowerCase()}`;
+    }
+
     const editToken = crypto.randomUUID();
 
     const [newMandal] = await db
